@@ -1,10 +1,13 @@
 package grafica;
 
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.util.Timer;
 
 import logica.CargaFuente;
 import logica.Cargas;
@@ -16,7 +19,7 @@ import logica.Cargas;
 public class FrmCargas extends javax.swing.JFrame {
 
     public static Cargas cargas;
-    
+    public boolean menuAbierto;
 
     /**
      * Creates new form NewJFrame
@@ -27,51 +30,72 @@ public class FrmCargas extends javax.swing.JFrame {
     }
     
     private void iniciador() {
+        menuAbierto = false;
         setResizable(false);
         cargas = new Cargas();
         this.jPanel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                try {
-                    double valorCarga = Double.valueOf(FrmCargas.this.txtCarga.getText()).doubleValue();
-                    valorCarga *= Math.pow(10.0D, Integer.valueOf(FrmCargas.this.txtCargaExp.getText()).intValue());
-                    if (FrmCargas.this.jPanel.getComponentAt(e.getPoint()).equals(FrmCargas.this.jPanel)) {
-                        ImageIcon icon;
-                        int x = e.getX();
-                        int y = e.getY();
+                int CLICK_IZQUIERDO = 1;
+                if(e.getButton() == CLICK_IZQUIERDO){
+                    try {
+                        double valorCarga = Double.valueOf(FrmCargas.this.txtCarga.getText()).doubleValue();
+                        valorCarga *= Math.pow(10.0D, Integer.valueOf(FrmCargas.this.txtCargaExp.getText()).intValue());
+                        if (FrmCargas.this.jPanel.getComponentAt(e.getPoint()).equals(FrmCargas.this.jPanel)) {
+                            ImageIcon icon;
+                            int x = e.getX();
+                            int y = e.getY();
 
-                        if (valorCarga > 0.0D) {
-                            icon = new ImageIcon(FrmCargas.class.getResource("img/CargaPositiva.png"));
-                        } else if (valorCarga < 0.0D) {
-                            icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNegativa.png"));
-                        } else {
+                            if (valorCarga > 0.0D) {
+                                icon = new ImageIcon(FrmCargas.class.getResource("img/CargaPositiva.png"));
+                            } else if (valorCarga < 0.0D) {
+                                icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNegativa.png"));
+                            } else {
 
-                            icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNula.png"));
+                                icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNula.png"));
+                            }
+                            JLabel lbl = new JLabel();
+                            lbl.setBounds(x - 24, y - 24, 48, 48);
+                            lbl.setIcon(icon);
+                            int xMenor = (int) (Math.floor((x / 50) + 0.5D) * 50.0D);
+                            int xMayor = (int) (Math.floor((x / 50 + 1)) * 50.0D);
+                            if (Math.abs(x - xMenor) > Math.abs(x - xMayor)) {
+                                x = xMayor;
+                            } else {
+                                x = xMenor;
+                            }
+                            int yMenor = (int) (Math.floor((y / 50) + 0.5D) * 50.0D);
+                            int yMayor = (int) (Math.floor((y / 50 + 1)) * 50.0D);
+                            if (Math.abs(y - yMenor) > Math.abs(y - yMayor)) {
+                                y = yMayor;
+                            } else {
+                                y = yMenor;
+                            }
+                            FrmCargas.cargas.agregar(new CargaFuente(valorCarga, x, y));
+                            FrmCargas.this.txtCarga.setText((String) null);
+                            FrmCargas.this.txtCargaExp.setText((String) null);
+                            FrmCargas.this.jPanel.add(lbl);
+                            FrmCargas.this.jPanel.repaint();
                         }
-                        JLabel lbl = new JLabel();
-                        lbl.setBounds(x - 24, y - 24, 48, 48);
-                        lbl.setIcon(icon);
-                        int xMenor = (int) (Math.floor((x / 50) + 0.5D) * 50.0D);
-                        int xMayor = (int) (Math.floor((x / 50 + 1)) * 50.0D);
-                        if (Math.abs(x - xMenor) > Math.abs(x - xMayor)) {
-                            x = xMayor;
-                        } else {
-                            x = xMenor;
-                        }
-                        int yMenor = (int) (Math.floor((y / 50) + 0.5D) * 50.0D);
-                        int yMayor = (int) (Math.floor((y / 50 + 1)) * 50.0D);
-                        if (Math.abs(y - yMenor) > Math.abs(y - yMayor)) {
-                            y = yMayor;
-                        } else {
-                            y = yMenor;
-                        }
-                        FrmCargas.cargas.agregar(new CargaFuente(valorCarga, x, y));
-                        FrmCargas.this.txtCarga.setText((String) null);
-                        FrmCargas.this.txtCargaExp.setText((String) null);
-                        FrmCargas.this.jPanel.add(lbl);
-                        FrmCargas.this.jPanel.repaint();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el valor de la carga");
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Ingrese el valor de la carga");
+                }else{
+                    int x = e.getX();
+                    int y = e.getY();
+                    CargaFuente carga = new CargaFuente(1,x,y);
+                    //Eliminar de la lista
+                    FrmCargas.cargas.eliminarPorPosicion(carga);
+                    //Eliminar visualmente
+                    for(Component label : jPanel.getComponents()){
+                        if(label instanceof JLabel){
+                            int labelXArreglada = label.getX() + label.getWidth() / 2;
+                            int labelYArreglada = label.getY() + label.getHeight() / 2;
+                            double distancia = Math.sqrt(Math.pow((labelXArreglada - x), 2) + Math.pow((labelYArreglada - y), 2));
+                            if(distancia < 25){
+                                label.setVisible(false);
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -86,6 +110,12 @@ public class FrmCargas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelAbrirMenu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelMenu = new javax.swing.JPanel();
+        lbtnVolverAtras = new javax.swing.JLabel();
+        lbtnIrPlacas = new javax.swing.JLabel();
+        lblMenuFondo = new javax.swing.JLabel();
         jPanel = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblCarga = new javax.swing.JLabel();
@@ -94,38 +124,98 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCarga = new javax.swing.JTextField();
         txtCargaExp = new javax.swing.JTextField();
         btnRepresentar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelAbrirMenu.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelAbrirMenuMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menu-opciones.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanelAbrirMenuLayout = new javax.swing.GroupLayout(jPanelAbrirMenu);
+        jPanelAbrirMenu.setLayout(jPanelAbrirMenuLayout);
+        jPanelAbrirMenuLayout.setHorizontalGroup(
+            jPanelAbrirMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAbrirMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(614, Short.MAX_VALUE))
+        );
+        jPanelAbrirMenuLayout.setVerticalGroup(
+            jPanelAbrirMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAbrirMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanelAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 60));
+
+        jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setFocusable(false);
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnVolverAtrasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 350, 70));
+
+        lbtnIrPlacas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrPlacasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 350, 80));
+
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menu-op1.jpg"))); // NOI18N
+        jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 500));
+
+        getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 360, 560));
 
         jPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel.setOpaque(false);
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 670, Short.MAX_VALUE)
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
+        getContentPane().add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 670, 500));
+
         lblTitulo.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Datos");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 150, 60));
 
         lblCarga.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblCarga.setForeground(new java.awt.Color(255, 255, 255));
         lblCarga.setText("Carga:");
+        getContentPane().add(lblCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 80, 30));
 
         lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblX10.setForeground(new java.awt.Color(255, 255, 255));
         lblX10.setText("X 10 ^");
+        getContentPane().add(lblX10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, 80, 30));
 
         lblC.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblC.setForeground(new java.awt.Color(255, 255, 255));
         lblC.setText("C");
+        getContentPane().add(lblC, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, 20, 30));
 
         txtCarga.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCarga.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +223,7 @@ public class FrmCargas extends javax.swing.JFrame {
                 txtCargaActionPerformed(evt);
             }
         });
+        getContentPane().add(txtCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 40, -1));
 
         txtCargaExp.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCargaExp.addActionListener(new java.awt.event.ActionListener() {
@@ -140,68 +231,26 @@ public class FrmCargas extends javax.swing.JFrame {
                 txtCargaExpActionPerformed(evt);
             }
         });
+        getContentPane().add(txtCargaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 150, 30, -1));
 
-        btnRepresentar.setText("Representar");
+        btnRepresentar.setText("Representar campo");
         btnRepresentar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRepresentarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRepresentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, -1, 40));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoMenu.jpg"))); // NOI18N
+        jButton1.setText("Limpiar cuaderno");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 160, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(lblCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnRepresentar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(lblC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(810, 810, 810)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(870, 870, 870)
-                .addComponent(lblX10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(lblFondo)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(lblCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnRepresentar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(lblC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(lblX10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(lblFondo)
-        );
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +272,71 @@ public class FrmCargas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese al menos una carga");
         }
     }//GEN-LAST:event_btnRepresentarActionPerformed
+
+    private void mostrarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                jPanelAbrirMenu.setEnabled(false);
+                if(jPanelMenu.getY() < -60){
+                    int nuevaY = jPanelMenu.getY() + 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    cancel();
+                    jPanelAbrirMenu.setEnabled(true);
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 5);
+    }
+    
+    private void ocultarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                jPanelAbrirMenu.setEnabled(false);
+                if(jPanelMenu.getY() > -jPanelMenu.getHeight()){
+                    int nuevaY = jPanelMenu.getY() - 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    cancel();
+                    jPanelAbrirMenu.setEnabled(true);
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
+    }
+    
+    private void jPanelAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAbrirMenuMouseClicked
+        if(menuAbierto){
+            menuAbierto = false;
+            ocultarMenu();
+        }else{
+            menuAbierto = true;
+            mostrarMenu();
+        }
+    }//GEN-LAST:event_jPanelAbrirMenuMouseClicked
+
+    private void lbtnIrPlacasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrPlacasMouseClicked
+        setVisible(false);
+        new FrmPlaca().setVisible(true);
+    }//GEN-LAST:event_lbtnIrPlacasMouseClicked
+
+    private void lbtnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnVolverAtrasMouseClicked
+        setVisible(false);
+        new FrmMenu().setVisible(true);
+    }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargas.limpiar();
+        for(Component label : jPanel.getComponents()){
+            if(label instanceof JLabel){
+                label.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,12 +378,19 @@ public class FrmCargas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRepresentar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JPanel jPanelAbrirMenu;
+    private javax.swing.JPanel jPanelMenu;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblCarga;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblMenuFondo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblX10;
+    private javax.swing.JLabel lbtnIrPlacas;
+    private javax.swing.JLabel lbtnVolverAtras;
     private javax.swing.JTextField txtCarga;
     private javax.swing.JTextField txtCargaExp;
     // End of variables declaration//GEN-END:variables

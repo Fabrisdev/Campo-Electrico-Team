@@ -15,6 +15,23 @@ public class Cargas {
     public void eliminar(int indice) {
         this.lista.remove(indice);
     }
+    
+    public void eliminar(CargaFuente carga){
+        this.lista.remove(carga);
+    }
+    
+    public void limpiar(){
+        lista = new ArrayList<>();
+    }
+    
+    public void eliminarPorPosicion(CargaFuente cargaRecibida){
+        for(int i = 0; i < lista.size(); i++){
+            double distancia = Math.sqrt(Math.pow((cargaRecibida.getxCarga() - lista.get(i).getxCarga()), 2) + Math.pow((cargaRecibida.getyCarga() - lista.get(i).getyCarga()), 2));
+            if(distancia < 30){
+                this.lista.remove(i);
+            }
+        }
+    }
 
     public int tamano() {
         return this.lista.size();
@@ -43,5 +60,13 @@ public class Cargas {
             resultante = resultante.sumarVectores(vectorActual);
         }
         return resultante;
+    }
+    
+    public String mostrar(){
+        String texto = "Items:";
+        for(CargaFuente carga : lista){
+            texto += " [x: "+carga.getxCarga() + "y: "+carga.getyCarga()+"], ";
+        }
+        return texto;
     }
 }

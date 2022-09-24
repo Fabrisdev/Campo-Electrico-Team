@@ -40,17 +40,17 @@ public class FrmMenu extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Proyecto de Física");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 370, 70));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 430, 70));
 
         lblCampoElectrico.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
         lblCampoElectrico.setForeground(new java.awt.Color(255, 255, 255));
         lblCampoElectrico.setText("Campo electrico generado por:");
-        getContentPane().add(lblCampoElectrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 310, 70));
+        getContentPane().add(lblCampoElectrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 360, 70));
 
         lblIntegrantes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblIntegrantes.setForeground(new java.awt.Color(255, 255, 255));
-        lblIntegrantes.setText("María Noel Saldaña - Fabrizio - Joel - Diego");
-        getContentPane().add(lblIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 530, 70));
+        lblIntegrantes.setText("María Noel Saldaña, Fabrizio Cobucci, Maykol Martínez, Diego Javier");
+        getContentPane().add(lblIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 930, 70));
 
         btnCargas.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnCargas.setText("Cargas");
@@ -59,7 +59,7 @@ public class FrmMenu extends javax.swing.JFrame {
                 btnCargasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
+        getContentPane().add(btnCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 190, -1));
 
         btnPlacas.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnPlacas.setText("Placas");
@@ -68,9 +68,9 @@ public class FrmMenu extends javax.swing.JFrame {
                 btnPlacasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 140, -1));
+        getContentPane().add(btnPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 190, -1));
 
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoMenu.jpg"))); // NOI18N
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo.jpg"))); // NOI18N
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         pack();
