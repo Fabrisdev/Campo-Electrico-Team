@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.Point;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,20 +55,16 @@ public class PanelPlacas extends JPanel {
         for (int i = 0; i < FrmPlaca.placas.tamano(); i++) {
             JLabel lbl = new JLabel();
             Placa actual = FrmPlaca.placas.devolver(i);
-            lbl.setBounds(actual.getxPlaca() - 25, 0, 50, 400);
+            lbl.setBounds(actual.getxPlaca() - 25, 50, 50, 400);
             lbl.setOpaque(true);
 
             if (actual.getSigma() > 0.0D) {
-                ImageIcon placa = new ImageIcon(getClass().getResource("imgs/lblPlacaPos.png"));
+                ImageIcon placa = new ImageIcon(getClass().getResource("img/lblPlacaPos.png"));
                 lbl.setIcon(placa);
             } else if (actual.getSigma() < 0.0D) {
-                ImageIcon placa2 = new ImageIcon(getClass().getResource("imgs/lblPlacaNeg.png"));
+                ImageIcon placa2 = new ImageIcon(getClass().getResource("img/lblPlacaNeg.png"));
                 lbl.setIcon(placa2);
-            } else {
-
-                lbl.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
-                ImageIcon placa3 = new ImageIcon(getClass().getResource("imgs/lblPlacaNeutra.png"));
-                lbl.setIcon(placa3);
+                
             }
             add(lbl);
         }
@@ -88,7 +83,7 @@ public class PanelPlacas extends JPanel {
         }
 
         for (int i = x1; i < x2; i += 50) {
-            if (!getComponentAt(i, 10).equals(this)) {
+            if (!getComponentAt(i, 100).equals(this)) {
                 cantidadPlacas++;
             }
         }
@@ -96,8 +91,7 @@ public class PanelPlacas extends JPanel {
     }
 
     private void miInicializador() {
-        setBounds(55, 130, 720, 400);
-        setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
+        setBounds(40, 40, 700, 500);
         FrmPlaca.placas.determinarXPlacas(getWidth());
         setLayout((LayoutManager) null);
     }

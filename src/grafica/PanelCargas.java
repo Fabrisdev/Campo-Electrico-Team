@@ -9,7 +9,6 @@ import java.awt.LayoutManager;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import logica.CargaFuente;
 import logica.Vector;
@@ -76,7 +75,6 @@ public class PanelCargas extends JPanel {
 
     private void miInicializador() {
         setBounds(40, 40, 700, 500);
-        setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
         setLayout((LayoutManager) null);
     }
 }

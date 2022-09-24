@@ -14,17 +14,101 @@ import logica.Vector;
  */
 public class PlacasSinMov extends javax.swing.JFrame {
 
+    private PanelPlacas panel1;
+    private JPanel panelImagenes;
+    private JLabel lblCarga;
+    private PanelVector panelVector;
+    private int contador;
 
-
-    /**
-     * Creates new form NewJFrame
-     */
     public PlacasSinMov() {
         initComponents();
-      
+        miInicializador();
     }
 
+    private double AGrados(double ang) {
+        return Math.round(Math.toDegrees(ang));
+    }
 
+    private void eliminarPanelVector() {
+        if (this.contador > 0) {
+            remove(0);
+        } else {
+
+            this.contador++;
+        }
+    }
+
+    private void crearPanelVector() {
+        this.panelVector = new PanelVector(this.panel1.getBounds());
+        add(this.panelVector);
+        setComponentZOrder(this.panelVector, 0);
+    }
+
+    private void miInicializador() {
+        setResizable(false);
+        this.txtCampo.setEditable(false);
+        this.txtFuerza.setEditable(false);
+        this.contador = 0;
+
+        this.panelImagenes = new JPanel();
+        this.panelImagenes.setBounds(40, 40, 700, 500);
+        this.panelImagenes.setLayout((LayoutManager) null);
+        this.panelImagenes.setOpaque(false);
+        this.lblCarga = new JLabel();
+        this.lblCarga.setSize(16, 16);
+        this.panelImagenes.add(this.lblCarga);
+        this.lblFondo.add(this.panelImagenes);
+
+        this.panel1 = new PanelPlacas();
+        this.lblFondo.add(this.panel1);
+        this.panel1.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    if (PlacasSinMov.this.panel1.getComponentAt(e.getPoint()).equals(PlacasSinMov.this.panel1)) {
+                        boolean bandera = true;
+                        boolean bandera2 = true;
+                        int xCarga = e.getX();
+                        int yCarga = e.getY();
+                        double valorCarga = Double.valueOf(PlacasSinMov.this.txtCarga.getText()).doubleValue();
+                        valorCarga *= Math.pow(10.0D, Integer.valueOf(PlacasSinMov.this.txtCargaExp.getText()).intValue());
+                        double campo = FrmPlaca.placas.sumarCampos(xCarga);
+                        double fuerza = campo * valorCarga;
+                        double anguloCampo = FrmPlaca.placas.anguloCampo(campo);
+                        double anguloFuerza = FrmPlaca.placas.anguloFuerza(anguloCampo, valorCarga);
+
+                        PlacasSinMov.this.eliminarPanelVector();
+                        PlacasSinMov.this.crearPanelVector();
+                        PlacasSinMov.this.panelVector.representacion(new Vector(campo, anguloCampo), e.getPoint(), valorCarga);
+                        PlacasSinMov.this.panelVector.repaint();
+
+                        if (campo == 0.0D) {
+                            bandera = false;
+                        }
+
+                        if (valorCarga == 0.0D) {
+                            bandera2 = false;
+                        }
+
+                        String strCampo = String.format("%6.2e", new Object[]{Double.valueOf(Math.abs(campo))}) + "N/C   ";
+                        String strFuerza = String.format("%6.2e", new Object[]{Double.valueOf(Math.abs(fuerza))}) + "N   ";
+                        if (bandera) {
+                            strCampo = strCampo + PlacasSinMov.this.AGrados(anguloCampo) + "°";
+                            if (bandera2) {
+                                strFuerza = strFuerza + PlacasSinMov.this.AGrados(anguloFuerza) + "°";
+                            }
+                        }
+                        PlacasSinMov.this.txtCampo.setText(strCampo);
+                        PlacasSinMov.this.txtFuerza.setText(strFuerza);
+                    }
+
+                } catch (Exception ex) {
+                    String st = "Ingrese un valor para la carga";
+                    JOptionPane.showMessageDialog(null, st);
+                }
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,40 +119,23 @@ public class PlacasSinMov extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
-        lblCargaPrueba = new javax.swing.JLabel();
-        lblX10 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblC = new javax.swing.JLabel();
         txtCarga = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
+        lblFuerza = new javax.swing.JLabel();
+        lblX10 = new javax.swing.JLabel();
+        txtCampo = new javax.swing.JTextField();
         txtCargaExp = new javax.swing.JTextField();
         lblCampo = new javax.swing.JLabel();
-        lblFuerza = new javax.swing.JLabel();
-        txtCampo = new javax.swing.JTextField();
+        lblCargaPrueba = new javax.swing.JLabel();
         txtFuerza = new javax.swing.JTextField();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblTitulo.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(51, 51, 51));
-        lblTitulo.setText("Datos");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 150, 60));
-
-        lblCargaPrueba.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCargaPrueba.setForeground(new java.awt.Color(51, 51, 51));
-        lblCargaPrueba.setText("Carga de prueba:");
-        getContentPane().add(lblCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 170, 30));
-
-        lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblX10.setForeground(new java.awt.Color(51, 51, 51));
-        lblX10.setText("X 10 ^");
-        getContentPane().add(lblX10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 60, 30));
 
         lblC.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblC.setForeground(new java.awt.Color(51, 51, 51));
         lblC.setText("C");
-        getContentPane().add(lblC, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 20, 30));
 
         txtCarga.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCarga.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +143,22 @@ public class PlacasSinMov extends javax.swing.JFrame {
                 txtCargaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 40, -1));
+
+        lblTitulo.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
+        lblTitulo.setText("Datos");
+
+        lblFuerza.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblFuerza.setText("Fuerza:");
+
+        lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblX10.setText("X 10 ^");
+
+        txtCampo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCampoActionPerformed(evt);
+            }
+        });
 
         txtCargaExp.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCargaExp.addActionListener(new java.awt.event.ActionListener() {
@@ -84,34 +166,94 @@ public class PlacasSinMov extends javax.swing.JFrame {
                 txtCargaExpActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCargaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 30, -1));
 
         lblCampo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCampo.setForeground(new java.awt.Color(51, 51, 51));
         lblCampo.setText("Campo:");
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 80, 30));
 
-        lblFuerza.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblFuerza.setForeground(new java.awt.Color(51, 51, 51));
-        lblFuerza.setText("Fuerza:");
-        getContentPane().add(lblFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 80, 30));
+        lblCargaPrueba.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblCargaPrueba.setText("Carga de prueba:");
 
-        txtCampo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCampoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 120, -1));
-
-        txtFuerza.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFuerza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtFuerza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFuerzaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 120, -1));
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(70, 70, 70))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblCampo)
+                            .addGap(6, 6, 6)
+                            .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblX10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblC))
+                                .addComponent(lblCargaPrueba))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblFuerza)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFuerza)))
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitulo)
+                .addGap(33, 33, 33)
+                .addComponent(lblCargaPrueba)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblX10)
+                    .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblC))
+                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCampo)
+                    .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFuerza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFuerza))
+                .addGap(230, 230, 230))
+        );
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoConHoja.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(770, 770, 770)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lblFondo)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,6 +341,7 @@ public class PlacasSinMov extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblCampo;
     private javax.swing.JLabel lblCargaPrueba;

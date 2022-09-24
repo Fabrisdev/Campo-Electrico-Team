@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -23,12 +21,12 @@ public class PanelAnimacion extends JPanel {
     private int contador;
 
     public PanelAnimacion(Point a, Point b, double valCar, double vel) {
-        this.xInicial = (int) a.getX() - 4;
-        this.yInicial = (int) a.getY() + 20;
-        this.xFinal = this.xInicial + (int) a.distance(b);
+        this.xInicial = (int)a.getX() + 20;
+        this.yInicial = (int)a.getY() + 35;
+        this.xFinal = this.xInicial + (int)a.distance(b);
         this.valorCarga = valCar;
         this.anguloRotacion = Placas.anguloDespl(a, b);
-        this.velocidad = (int) Math.ceil(Math.log(Math.ceil(vel))) + 2;
+        this.velocidad = (int)Math.ceil(Math.log(Math.ceil(vel))) + 2;
         miInicializador();
     }
     private int xInicial;
@@ -37,7 +35,7 @@ public class PanelAnimacion extends JPanel {
     private double valorCarga;
 
     public void paintComponent(Graphics g) {
-        setLocation(55, 130);
+        setLocation(40, 40);
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         g2D.rotate(this.anguloRotacion, this.xInicial, this.yInicial);
@@ -56,25 +54,25 @@ public class PanelAnimacion extends JPanel {
     }
 
     private void miInicializador() {
-        setBounds(55, 130, 720, 400);
+        setBounds(40, 40, 700, 500);
         setOpaque(false);
         setLayout((LayoutManager) null);
         this.contador = 0;
         try {
             if (this.valorCarga > 0.0D) {
-                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("imgs/carga_pos_16x.png"));
+                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("img/carga_pos_16x.png"));
             } else if (this.valorCarga < 0.0D) {
-                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("imgs/carga_neg_16x.png"));
+                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("img/carga_neg_16x.png"));
             } else {
 
-                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("imgs/carga_nula_16x.png"));
+                this.imagenCarga = ImageIO.read(getClass().getResourceAsStream("img/carga_nula_16x.png"));
             }
 
         } catch (IOException ex) {
 
         }
 
-        Timer timer = new Timer(200, new ActionListener() /*    */ {
+        Timer timer = new Timer(200, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 PanelAnimacion.this.contador++;
                 PanelAnimacion.this.moverCarga();
