@@ -2,7 +2,6 @@ package grafica;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import logica.Placa;
@@ -191,7 +190,7 @@ public class FrmPlaca extends javax.swing.JFrame {
         if (placas.tamano() > 0) {
             dispose();
             if (this.rbnConMovimiento.isSelected()) {
-                (new PlacasConMov()).setVisible(true);
+                (new FrmPlacasConMov()).setVisible(true);
             } else {
 
                 (new PlacasSinMov()).setVisible(true);
