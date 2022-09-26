@@ -64,7 +64,6 @@ public class PanelCargas extends JPanel {
             } else if (car.getValorCarga() < 0.0D) {
                 img = ImageIO.read(getClass().getResourceAsStream("img/CargaNegativa.png"));
             } else {
-
                 img = ImageIO.read(getClass().getResourceAsStream("img/CargaNula.png"));
             }
             int x = (int) car.getxCarga();

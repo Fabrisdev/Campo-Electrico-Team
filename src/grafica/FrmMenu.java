@@ -1,12 +1,8 @@
 package grafica;
 
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -32,15 +28,20 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelPantallaNegra = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblCampoElectrico = new javax.swing.JLabel();
         lblIntegrantes = new javax.swing.JLabel();
         btnCargas = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnPlacas = new javax.swing.JButton();
         lblFondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelPantallaNegra.setOpaque(false);
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -66,6 +67,15 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         getContentPane().add(btnCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 190, -1));
 
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 190, -1));
+
         btnPlacas.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnPlacas.setText("Placas");
         btnPlacas.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +96,24 @@ public class FrmMenu extends javax.swing.JFrame {
         frm.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCargasActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        jPanelPantallaNegra.setOpaque(true);
+        jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelPantallaNegra.getBackground().getAlpha() < 50){
+                    jPanelPantallaNegra.setBackground(new Color(0,0,0,jPanelPantallaNegra.getBackground().getAlpha() + 1));
+                }else{
+                    System.exit(0);
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacasActionPerformed
         FrmPlaca frm = new FrmPlaca();
@@ -132,6 +160,8 @@ public class FrmMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargas;
     private javax.swing.JButton btnPlacas;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblCampoElectrico;
     private javax.swing.JLabel lblFondoMenu;
     private javax.swing.JLabel lblIntegrantes;
