@@ -6,7 +6,6 @@ import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.TimerTask;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.util.Timer;
@@ -41,9 +40,9 @@ public class FrmCargas extends javax.swing.JFrame {
     }
     
     private void crearPanelVector() {
-        this.panel = new PanelVector(this.panel1.getBounds());
-        getContentPane().add(this.panel, new AbsoluteConstraints(0, 0, panel1.getWidth(), panel1.getHeight()));
-        setComponentZOrder(this.panel, 0);
+        panel = new PanelVector(panel1.getBounds());
+        add(panel, new AbsoluteConstraints(0, 0, panel1.getWidth(), panel1.getHeight()));
+        setComponentZOrder(panel, 0);
     }
 
     private void eliminarPanelVector() {
@@ -177,6 +176,10 @@ public class FrmCargas extends javax.swing.JFrame {
                     panel1 = new PanelCargas();
                     lblCarga1.setLayout((LayoutManager) null);
                     lblFondo.add(panel1);
+                    
+                    if(cargas.tamano() == 0){
+                        lblTips.setText("+TIP: Primero escribe los valores de la carga");
+                    }
                 }
             }
         });
@@ -212,7 +215,7 @@ public class FrmCargas extends javax.swing.JFrame {
         txtFuerza = new javax.swing.JTextField();
         cbCargaPrueba = new javax.swing.JCheckBox();
         btnRepresentar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         lblFondoDatos = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
@@ -369,13 +372,13 @@ public class FrmCargas extends javax.swing.JFrame {
         });
         getContentPane().add(btnRepresentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, -1, 40));
 
-        jButton1.setText("Limpiar cuaderno");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("Limpiar cuaderno");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 170, 40));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 170, 40));
 
         lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondoo.png"))); // NOI18N
         getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 0, -1, -1));
@@ -486,14 +489,29 @@ public class FrmCargas extends javax.swing.JFrame {
         new FrmMenu().setVisible(true);
     }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         cargas.limpiar();
-        for(Component label : jPanel.getComponents()){
-            if(label instanceof JLabel){
-                label.setVisible(false);
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //Borrar
+        lblFondo.remove(panel1);
+        lblFondo.remove(panelImagenes);
+        lblFondo.setVisible(false);
+        lblFondo.setVisible(true);
+
+        //Settear de nuevo
+        panelImagenes = new JPanel();
+        panelImagenes.setBounds(40, 40, 700, 500);
+        panelImagenes.setLayout((LayoutManager) null);
+        panelImagenes.setOpaque(false);
+        lblCarga1 = new JLabel();
+        lblCarga1.setSize(16, 16);
+        lblCarga1.setOpaque(false);
+        panelImagenes.add(lblCarga1);
+        lblFondo.add(panelImagenes);
+        panel1 = new PanelCargas();
+        lblCarga1.setLayout((LayoutManager) null);
+        lblFondo.add(panel1);
+        lblTips.setText("TIP: Primero escribe los valores de la carga");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
@@ -616,9 +634,9 @@ public class FrmCargas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRepresentar;
     private javax.swing.JCheckBox cbCargaPrueba;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelOcultarResto;
