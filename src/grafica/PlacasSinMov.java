@@ -171,7 +171,7 @@ public class PlacasSinMov extends javax.swing.JFrame {
         lblCampo.setText("Campo:");
 
         lblCargaPrueba.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCargaPrueba.setText("Carga de prueba:");
+        lblCargaPrueba.setText("Carga:");
 
         txtFuerza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtFuerza.addActionListener(new java.awt.event.ActionListener() {
@@ -198,16 +198,16 @@ public class PlacasSinMov extends javax.swing.JFrame {
                             .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(31, 31, 31)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblCargaPrueba)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblX10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(lblC))
-                                .addComponent(lblCargaPrueba))))
+                                    .addComponent(lblX10)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(lblC)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblFuerza)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

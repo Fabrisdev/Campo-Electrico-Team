@@ -74,7 +74,7 @@ public class PanelCargas extends JPanel {
     }
 
     private void miInicializador() {
-        setBounds(40, 40, 700, 500);
+        setBounds(0, 40, 670, 500);
         setLayout((LayoutManager) null);
     }
 }
