@@ -11,6 +11,7 @@
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/img/CargaNegativa.png</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/img/carga_neg_16x.png</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/img/carga_pos_16x.png</file>
+            <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/PanelVector.java</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/logica/Vector.java</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/PlacasSinMov.java</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/FrmPlacasConMov.java</file>
@@ -19,6 +20,7 @@
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/PanelCargas.java</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/img/carga_nula_16x.png</file>
             <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/grafica/FrmCargas.java</file>
+            <file>file:/home/fabri/NetBeansProjects/Proyecto%20Campo%20Electrico/src/logica/CirclePanel.java</file>
         </group>
     </open-files>
 </project-private>

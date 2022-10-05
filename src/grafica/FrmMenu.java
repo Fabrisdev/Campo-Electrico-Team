@@ -3,6 +3,8 @@ package grafica;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import logica.CirclePanel;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -28,6 +30,7 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        circlePanel1 = new logica.CirclePanel();
         jPanelPantallaNegra = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblCampoElectrico = new javax.swing.JLabel();
@@ -40,7 +43,32 @@ public class FrmMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        javax.swing.GroupLayout circlePanel1Layout = new javax.swing.GroupLayout(circlePanel1);
+        circlePanel1.setLayout(circlePanel1Layout);
+        circlePanel1Layout.setHorizontalGroup(
+            circlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        circlePanel1Layout.setVerticalGroup(
+            circlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(circlePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 285, 0, 0));
+
         jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+        );
+
         getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
@@ -86,15 +114,36 @@ public class FrmMenu extends javax.swing.JFrame {
         getContentPane().add(btnPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 190, -1));
 
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo.jpg"))); // NOI18N
+        lblFondoMenu.setPreferredSize(new java.awt.Dimension(1000, 570));
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargasActionPerformed
-        FrmCargas frm = new FrmCargas();
-        frm.setVisible(true);
-        dispose();
+        //FrmCargas frm = new FrmCargas();
+        //frm.setVisible(true);
+        //dispose();
+        //circlePanel1.setBounds(0, 0, 4000, 4000);
+        /*
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            int size = 0;
+            
+            @Override
+            public void run() {                
+                if(size < 800){
+                    size += 16;
+                    circlePanel1.setBounds(getWidth() / 2 - size / 2, getHeight() / 2 - size / 2, size, size);
+                }else{
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);*/
+        //circlePanel1.setBounds(0, 0, 4000, 4000);
+        new FrmCargas().setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnCargasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -161,6 +210,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnCargas;
     private javax.swing.JButton btnPlacas;
     private javax.swing.JButton btnSalir;
+    private logica.CirclePanel circlePanel1;
     private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblCampoElectrico;
     private javax.swing.JLabel lblFondoMenu;

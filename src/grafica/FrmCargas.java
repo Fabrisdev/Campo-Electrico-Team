@@ -214,7 +214,6 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCampo = new javax.swing.JTextField();
         txtFuerza = new javax.swing.JTextField();
         cbCargaPrueba = new javax.swing.JCheckBox();
-        btnRepresentar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         lblFondoDatos = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
@@ -364,14 +363,6 @@ public class FrmCargas extends javax.swing.JFrame {
         cbCargaPrueba.setText("¿Carga de prueba?");
         getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 332, 200, -1));
 
-        btnRepresentar.setText("Representar campo");
-        btnRepresentar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRepresentarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRepresentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, -1, 40));
-
         btnLimpiar.setText("Limpiar cuaderno");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,16 +379,6 @@ public class FrmCargas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRepresentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepresentarActionPerformed
-        if (cargas.tamano() > 0) {
-            (new FrmCargasSinMov()).setVisible(true);
-            dispose();
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Ingrese al menos una carga");
-        }
-    }//GEN-LAST:event_btnRepresentarActionPerformed
 
     private void mostrarMenu(){
         Timer cronometro = new Timer();
@@ -544,41 +525,45 @@ public class FrmCargas extends javax.swing.JFrame {
     }//GEN-LAST:event_lbtnSalirMouseClicked
 
     private void jPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelMouseClicked
-        if(cbCargaPrueba.isSelected()){                    
-            try {
-                boolean bandera = true;
-                boolean bandera2 = true;
-                double carga = Double.parseDouble(txtCarga.getText());
-                carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
-                Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
-                double moduloCampo = Math.round(campo.getModulo());
-                double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
-                double moduloFuerza = moduloCampo * Math.abs(carga);
-                double anguloFuerza = cargas.anguloFuerza(anguloCampo, carga);
-                eliminarPanelVector();
-                crearPanelVector();
-                panel.representacion(campo, evt.getPoint(), carga);
-                panel.repaint();
-                if (moduloCampo == 0.0D) {
-                    bandera = false;
-                }
-                if (carga == 0.0D) {
-                    bandera2 = false;
-                }
-                String strCampo = String.format("%6.2e", new Object[]{ moduloCampo }) + "N/C   ";
-                String strFuerza = String.format("%6.2e", new Object[]{ moduloFuerza }) + "N   ";
-                if (bandera) {
-                    strCampo = strCampo + anguloCampo + "°";
-                    if (bandera2) {
-                        strFuerza = strFuerza + anguloFuerza + "°";
+        if(cbCargaPrueba.isSelected()){
+            if(cargas.tamano() > 0){
+                try {
+                    boolean bandera = true;
+                    boolean bandera2 = true;
+                    double carga = Double.parseDouble(txtCarga.getText());
+                    carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
+                    Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
+                    double moduloCampo = Math.round(campo.getModulo());
+                    double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
+                    double moduloFuerza = moduloCampo * Math.abs(carga);
+                    double anguloFuerza = cargas.anguloFuerza(anguloCampo, carga);
+                    eliminarPanelVector();
+                    crearPanelVector();
+                    panel.representacion(campo, evt.getPoint(), carga);
+                    panel.repaint();
+                    if (moduloCampo == 0.0D) {
+                        bandera = false;
                     }
+                    if (carga == 0.0D) {
+                        bandera2 = false;
+                    }
+                    String strCampo = String.format("%6.2e", new Object[]{ moduloCampo }) + "N/C   ";
+                    String strFuerza = String.format("%6.2e", new Object[]{ moduloFuerza }) + "N   ";
+                    if (bandera) {
+                        strCampo = strCampo + anguloCampo + "°";
+                        if (bandera2) {
+                            strFuerza = strFuerza + anguloFuerza + "°";
+                        }
+                    }
+                    txtCampo.setVisible(true);
+                    txtFuerza.setVisible(true);
+                    txtCampo.setText(strCampo);
+                    txtFuerza.setText(strFuerza);
+                } catch (Exception ex) {
+
                 }
-                txtCampo.setVisible(true);
-                txtFuerza.setVisible(true);
-                txtCampo.setText(strCampo);
-                txtFuerza.setText(strFuerza);
-            } catch (Exception ex) {
-                
+            }else{
+                //TODO: Decirle que agregue al menos una carga
             }
         }
     }//GEN-LAST:event_jPanelMouseClicked
@@ -635,7 +620,6 @@ public class FrmCargas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnRepresentar;
     private javax.swing.JCheckBox cbCargaPrueba;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanelMenu;
