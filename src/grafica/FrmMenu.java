@@ -28,76 +28,67 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelPantallaNegra = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        lblCampoElectrico = new javax.swing.JLabel();
-        lblIntegrantes = new javax.swing.JLabel();
-        btnCargas = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        btnPlacas = new javax.swing.JButton();
         lblFondoMenu = new javax.swing.JLabel();
+        lblBtnSalir = new javax.swing.JLabel();
+        lblBtnCarga = new javax.swing.JLabel();
+        lblBtnPlaca = new javax.swing.JLabel();
+        lblBtnCreditos = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelPantallaNegra.setOpaque(false);
-        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
-
-        lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Proyecto de Física");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 430, 70));
-
-        lblCampoElectrico.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
-        lblCampoElectrico.setForeground(new java.awt.Color(255, 255, 255));
-        lblCampoElectrico.setText("Campo electrico generado por:");
-        getContentPane().add(lblCampoElectrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 360, 70));
-
-        lblIntegrantes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblIntegrantes.setForeground(new java.awt.Color(255, 255, 255));
-        lblIntegrantes.setText("María Noel Saldaña, Fabrizio Cobucci, Maykol Martínez, Diego Javier");
-        getContentPane().add(lblIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 930, 70));
-
-        btnCargas.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        btnCargas.setText("Cargas");
-        btnCargas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 190, -1));
-
-        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 190, -1));
-
-        btnPlacas.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        btnPlacas.setText("Placas");
-        btnPlacas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlacasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 190, -1));
-
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo.jpg"))); // NOI18N
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menu nuevo titulo dudoso.jpeg"))); // NOI18N
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
+
+        lblBtnSalir.setText("jLabel1");
+        lblBtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnSalirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 110, 100));
+
+        lblBtnCarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnCargaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 170, 90));
+
+        lblBtnPlaca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnPlacaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 170, 90));
+
+        lblBtnCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnCreditosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 90, 90));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCargasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargasActionPerformed
-        FrmCargas frm = new FrmCargas();
-        frm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnCargasActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void lblBtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSalirMouseClicked
         jPanelPantallaNegra.setOpaque(true);
         jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
         Timer cronometro = new Timer();
@@ -113,13 +104,22 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         };
         cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_lblBtnSalirMouseClicked
 
-    private void btnPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacasActionPerformed
-        FrmPlaca frm = new FrmPlaca();
-        frm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnPlacasActionPerformed
+    private void lblBtnCargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCargaMouseClicked
+        setVisible(false);
+        new FrmCargas().setVisible(true);
+    }//GEN-LAST:event_lblBtnCargaMouseClicked
+
+    private void lblBtnPlacaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseClicked
+        setVisible(false);
+        new FrmCargas().setVisible(true);
+    }//GEN-LAST:event_lblBtnPlacaMouseClicked
+
+    private void lblBtnCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lblBtnCreditosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,13 +158,11 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargas;
-    private javax.swing.JButton btnPlacas;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanelPantallaNegra;
-    private javax.swing.JLabel lblCampoElectrico;
+    private javax.swing.JLabel lblBtnCarga;
+    private javax.swing.JLabel lblBtnCreditos;
+    private javax.swing.JLabel lblBtnPlaca;
+    private javax.swing.JLabel lblBtnSalir;
     private javax.swing.JLabel lblFondoMenu;
-    private javax.swing.JLabel lblIntegrantes;
-    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
