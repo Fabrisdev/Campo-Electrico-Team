@@ -4,6 +4,9 @@
  */
 package grafica;
 
+import java.net.URL;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Fabri
@@ -15,6 +18,11 @@ public class FrmCreditos extends javax.swing.JFrame {
      */
     public FrmCreditos() {
         initComponents();
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
+        setTitle("ES: Créditos | Equipo Dinamita");
+        setResizable(false);
     }
 
     /**
@@ -32,6 +40,7 @@ public class FrmCreditos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblBtnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnVolverMouseClicked(evt);

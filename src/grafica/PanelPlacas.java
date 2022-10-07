@@ -91,7 +91,7 @@ public class PanelPlacas extends JPanel {
     }
 
     private void miInicializador() {
-        setBounds(40, 40, 700, 500);
+        setBounds(40, 40, 670, 500);
         FrmPlaca.placas.determinarXPlacas(getWidth());
         setLayout((LayoutManager) null);
     }

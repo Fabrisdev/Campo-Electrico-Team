@@ -1,12 +1,15 @@
 package grafica;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.TimerTask;
 import javax.swing.JLabel;
 import java.util.Timer;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import logica.CargaFuente;
@@ -52,6 +55,14 @@ public class FrmCargas extends javax.swing.JFrame {
     }
     
     private void iniciador() {
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
+        txtCarga.setBackground(new Color(0,0,0,0));
+        txtCargaExp.setBackground(new Color(0,0,0,0));
+        txtCampo.setBackground(new Color(0,0,0,0));
+        txtFuerza.setBackground(new Color(0,0,0,0));
+        lbtnAbrirMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.contador = 0;
         this.panelImagenes = new JPanel();
         this.panelImagenes.setBounds(40, 40, 700, 500);
@@ -86,11 +97,9 @@ public class FrmCargas extends javax.swing.JFrame {
             }
         });
         
-        setTitle("PS: Cargas | Equipo Dinamita");
+        setTitle("ES: Cargas | Equipo Dinamita");
         txtCampo.setVisible(false);
         txtFuerza.setVisible(false);
-        jPanelOcultarResto.setOpaque(true);
-        jPanelOcultarResto.setBackground(new Color(0,0,0,0));
         menuMoviendose = false;
         menuAbierto = false;
         setResizable(false);
@@ -196,7 +205,6 @@ public class FrmCargas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelPantallaNegra = new javax.swing.JPanel();
         lbtnAbrirMenu = new logica.JLabelRotar();
         jPanelMenu = new javax.swing.JPanel();
         lbtnVolverAtras = new javax.swing.JLabel();
@@ -204,39 +212,20 @@ public class FrmCargas extends javax.swing.JFrame {
         lbtnIrCreditos = new javax.swing.JLabel();
         lbtnSalir = new javax.swing.JLabel();
         lblMenuFondo = new javax.swing.JLabel();
-        jPanelOcultarResto = new javax.swing.JPanel();
+        lbtnLimpiar = new javax.swing.JLabel();
         lblTips = new javax.swing.JLabel();
         jPanel = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        lblCarga = new javax.swing.JLabel();
-        lblX10 = new javax.swing.JLabel();
-        lblC = new javax.swing.JLabel();
         txtCarga = new javax.swing.JTextField();
         txtCargaExp = new javax.swing.JTextField();
         txtCampo = new javax.swing.JTextField();
         txtFuerza = new javax.swing.JTextField();
         cbCargaPrueba = new javax.swing.JCheckBox();
-        btnLimpiar = new javax.swing.JButton();
         lblFondoDatos = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanelPantallaNegra.setOpaque(false);
-
-        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
-        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
-        jPanelPantallaNegraLayout.setHorizontalGroup(
-            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        jPanelPantallaNegraLayout.setVerticalGroup(
-            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
         lbtnAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,48 +244,47 @@ public class FrmCargas extends javax.swing.JFrame {
                 lbtnVolverAtrasMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 400, 50));
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 50));
 
         lbtnIrPlacas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbtnIrPlacasMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 400, 60));
-        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 400, 60));
+        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 400, 70));
+
+        lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCreditosMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 60));
 
         lbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbtnSalirMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 400, 50));
+        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
 
-        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/MenuOpcionesCarga.png"))); // NOI18N
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizableCarga.png"))); // NOI18N
         jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
-        jPanelOcultarResto.setOpaque(false);
-
-        javax.swing.GroupLayout jPanelOcultarRestoLayout = new javax.swing.GroupLayout(jPanelOcultarResto);
-        jPanelOcultarResto.setLayout(jPanelOcultarRestoLayout);
-        jPanelOcultarRestoLayout.setHorizontalGroup(
-            jPanelOcultarRestoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
-        );
-        jPanelOcultarRestoLayout.setVerticalGroup(
-            jPanelOcultarRestoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanelOcultarResto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 590, 560));
+        lbtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbtnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnLimpiarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbtnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, 180, 70));
 
         lblTips.setFont(new java.awt.Font("Dyuthi", 3, 24)); // NOI18N
         lblTips.setForeground(new java.awt.Color(102, 102, 255));
         lblTips.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTips.setText("TIP: Primero escribe los valores de la carga");
-        getContentPane().add(lblTips, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, -1));
+        getContentPane().add(lblTips, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 455, 1000, -1));
 
         jPanel.setBackground(new java.awt.Color(204, 204, 204));
         jPanel.setOpaque(false);
@@ -319,65 +307,59 @@ public class FrmCargas extends javax.swing.JFrame {
 
         getContentPane().add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 670, 500));
 
-        lblTitulo.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Datos");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 150, 60));
-
-        lblCarga.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCarga.setForeground(new java.awt.Color(255, 255, 255));
-        lblCarga.setText("Carga:");
-        getContentPane().add(lblCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 80, 30));
-
-        lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblX10.setForeground(new java.awt.Color(255, 255, 255));
-        lblX10.setText("X 10 ^");
-        getContentPane().add(lblX10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, 80, 30));
-
-        lblC.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblC.setForeground(new java.awt.Color(255, 255, 255));
-        lblC.setText("C");
-        getContentPane().add(lblC, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, 20, 30));
-
         txtCarga.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCarga.setForeground(new java.awt.Color(255, 255, 255));
+        txtCarga.setBorder(null);
         txtCarga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCargaKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 40, -1));
+        getContentPane().add(txtCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 40, -1));
 
         txtCargaExp.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCargaExp.setForeground(new java.awt.Color(255, 255, 255));
+        txtCargaExp.setBorder(null);
         txtCargaExp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCargaExpKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCargaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 150, 30, -1));
+        getContentPane().add(txtCargaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 140, 30, -1));
 
         txtCampo.setEditable(false);
-        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 360, 150, 30));
+        txtCampo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCampo.setBorder(null);
+        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 150, 30));
 
         txtFuerza.setEditable(false);
-        getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 150, 30));
+        txtFuerza.setForeground(new java.awt.Color(255, 255, 255));
+        txtFuerza.setBorder(null);
+        getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 410, 150, 30));
 
         cbCargaPrueba.setForeground(new java.awt.Color(255, 255, 255));
-        cbCargaPrueba.setText("¿Carga de prueba?");
-        getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 332, 200, -1));
+        getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(756, 335, 20, -1));
 
-        btnLimpiar.setText("Limpiar cuaderno");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 170, 40));
-
-        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondoo.png"))); // NOI18N
+        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo datos V2.png"))); // NOI18N
         getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 0, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -438,31 +420,6 @@ public class FrmCargas extends javax.swing.JFrame {
         new FrmMenu().setVisible(true);
     }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        cargas.limpiar();
-        //Borrar
-        lblFondo.remove(panel1);
-        lblFondo.remove(panelImagenes);
-        lblFondo.setVisible(false);
-        lblFondo.setVisible(true);
-
-        //Settear de nuevo
-        panelImagenes = new JPanel();
-        panelImagenes.setBounds(40, 40, 700, 500);
-        panelImagenes.setLayout((LayoutManager) null);
-        panelImagenes.setOpaque(false);
-        lblCarga1 = new JLabel();
-        lblCarga1.setSize(16, 16);
-        lblCarga1.setOpaque(false);
-        panelImagenes.add(lblCarga1);
-        lblFondo.add(panelImagenes);
-        panel1 = new PanelCargas();
-        lblCarga1.setLayout((LayoutManager) null);
-        lblFondo.add(panel1);
-        lblTips.setText("TIP: Primero escribe los valores de la carga");
-        lblTips.setForeground(new Color(102, 102, 255));
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
             if(menuAbierto){
@@ -496,42 +453,46 @@ public class FrmCargas extends javax.swing.JFrame {
     private void jPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelMouseClicked
         int CLICK_IZQUIERDO = 1;
         if(evt.getButton() == CLICK_IZQUIERDO){
-            if(cbCargaPrueba.isSelected()){                    
-                try {
-                    boolean bandera = true;
-                    boolean bandera2 = true;
-                    double carga = Double.parseDouble(txtCarga.getText());
-                    carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
-                    Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
-                    double moduloCampo = Math.round(campo.getModulo());
-                    double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
-                    double moduloFuerza = moduloCampo * Math.abs(carga);
-                    double anguloFuerza = cargas.anguloFuerza(anguloCampo, carga);
-                    eliminarPanelVector();
-                    crearPanelVector();
-                    panel.representacion(campo, evt.getPoint(), carga);
-                    panel.repaint();
-                    if (moduloCampo == 0.0D) {
-                        bandera = false;
-                    }
-                    if (carga == 0.0D) {
-                        bandera2 = false;
-                    }
-                    String strCampo = String.format("%6.2e", new Object[]{ moduloCampo }) + "N/C   ";
-                    String strFuerza = String.format("%6.2e", new Object[]{ moduloFuerza }) + "N   ";
-                    if (bandera) {
-                        strCampo = strCampo + anguloCampo + "°";
-                        if (bandera2) {
-                            strFuerza = strFuerza + anguloFuerza + "°";
+            if(cbCargaPrueba.isSelected()){   
+                if(cargas.tamano() > 0){
+                    if(!menuAbierto){
+                        try {
+                            boolean bandera = true;
+                            boolean bandera2 = true;
+                            double carga = Double.parseDouble(txtCarga.getText());
+                            carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
+                            Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
+                            double moduloCampo = Math.round(campo.getModulo());
+                            double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
+                            double moduloFuerza = moduloCampo * Math.abs(carga);
+                            double anguloFuerza = cargas.anguloFuerza(anguloCampo, carga);
+                            eliminarPanelVector();
+                            crearPanelVector();
+                            panel.representacion(campo, evt.getPoint(), carga);
+                            panel.repaint();
+                            if (moduloCampo == 0.0D) {
+                                bandera = false;
+                            }
+                            if (carga == 0.0D) {
+                                bandera2 = false;
+                            }
+                            String strCampo = String.format("%6.2e", new Object[]{ moduloCampo }) + "N/C   ";
+                            String strFuerza = String.format("%6.2e", new Object[]{ moduloFuerza }) + "N   ";
+                            if (bandera) {
+                                strCampo = strCampo + anguloCampo + "°";
+                                if (bandera2) {
+                                    strFuerza = strFuerza + anguloFuerza + "°";
+                                }
+                            }
+                            txtCampo.setVisible(true);
+                            txtFuerza.setVisible(true);
+                            txtCampo.setText(strCampo);
+                            txtFuerza.setText(strFuerza);
+                        } catch (Exception ex) {
+                            lblTips.setText("¡Debes ingresar al menos una carga!");
+                            lblTips.setForeground(Color.RED);
                         }
                     }
-                    txtCampo.setVisible(true);
-                    txtFuerza.setVisible(true);
-                    txtCampo.setText(strCampo);
-                    txtFuerza.setText(strFuerza);
-                } catch (Exception ex) {
-                    lblTips.setText("¡Debes ingresar al menos una carga!");
-                    lblTips.setForeground(Color.RED);
                 }
             }
         }
@@ -550,6 +511,36 @@ public class FrmCargas extends javax.swing.JFrame {
             lblTips.setForeground(Color.GREEN);
         }
     }//GEN-LAST:event_txtCargaKeyReleased
+
+    private void lbtnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnLimpiarMouseClicked
+        cargas.limpiar();
+        //Borrar
+        lblFondo.remove(panel1);
+        lblFondo.remove(panelImagenes);
+        lblFondo.setVisible(false);
+        lblFondo.setVisible(true);
+
+        //Settear de nuevo
+        panelImagenes = new JPanel();
+        panelImagenes.setBounds(40, 40, 700, 500);
+        panelImagenes.setLayout((LayoutManager) null);
+        panelImagenes.setOpaque(false);
+        lblCarga1 = new JLabel();
+        lblCarga1.setSize(16, 16);
+        lblCarga1.setOpaque(false);
+        panelImagenes.add(lblCarga1);
+        lblFondo.add(panelImagenes);
+        panel1 = new PanelCargas();
+        lblCarga1.setLayout((LayoutManager) null);
+        lblFondo.add(panel1);
+        lblTips.setText("TIP: Primero escribe los valores de la carga");
+        lblTips.setForeground(new Color(102, 102, 255));
+    }//GEN-LAST:event_lbtnLimpiarMouseClicked
+
+    private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCreditosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -590,23 +581,18 @@ public class FrmCargas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox cbCargaPrueba;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanelMenu;
-    private javax.swing.JPanel jPanelOcultarResto;
     private javax.swing.JPanel jPanelPantallaNegra;
-    private javax.swing.JLabel lblC;
-    private javax.swing.JLabel lblCarga;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblFondoDatos;
     private javax.swing.JLabel lblMenuFondo;
     private javax.swing.JLabel lblTips;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblX10;
     private logica.JLabelRotar lbtnAbrirMenu;
     private javax.swing.JLabel lbtnIrCreditos;
     private javax.swing.JLabel lbtnIrPlacas;
+    private javax.swing.JLabel lbtnLimpiar;
     private javax.swing.JLabel lbtnSalir;
     private javax.swing.JLabel lbtnVolverAtras;
     private javax.swing.JTextField txtCampo;

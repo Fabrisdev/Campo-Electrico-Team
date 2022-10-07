@@ -1,5 +1,9 @@
 package grafica;
 
+import java.awt.Color;
+import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -10,7 +14,9 @@ import logica.Placas;
 public class FrmPlaca extends javax.swing.JFrame {
 
     public static Placas placas;
-
+    private boolean menuAbierto;
+    private boolean menuMoviendose;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -26,10 +32,15 @@ public class FrmPlaca extends javax.swing.JFrame {
     }
 
     private void miInicializador() {
+        menuAbierto = false;
+        menuMoviendose = false;
+        setTitle("ES: Placas | Equipo Dinamita");
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
         setResizable(false);
         this.rbnConMovimiento.setEnabled(false);
         this.rbnSinMovimiento.setEnabled(false);
-        this.btnRepresentar.setEnabled(false);
         placas = new Placas();
 
     }
@@ -44,32 +55,73 @@ public class FrmPlaca extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        lblTitulo = new javax.swing.JLabel();
-        lblDensidadSuperficial = new javax.swing.JLabel();
+        lbtnAbrirMenu = new logica.JLabelRotar();
+        jPanelMenu = new javax.swing.JPanel();
+        lbtnVolverAtras = new javax.swing.JLabel();
+        lbtnIrCargas = new javax.swing.JLabel();
+        lbtnIrCreditos = new javax.swing.JLabel();
+        lbtnSalir = new javax.swing.JLabel();
+        lblMenuFondo = new javax.swing.JLabel();
         txtSigma = new javax.swing.JTextField();
-        lblX10 = new javax.swing.JLabel();
         txtExp = new javax.swing.JTextField();
-        lblC = new javax.swing.JLabel();
-        lblRepresentacion = new javax.swing.JLabel();
-        rbnConMovimiento = new javax.swing.JRadioButton();
-        rbnSinMovimiento = new javax.swing.JRadioButton();
-        btnRepresentar = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
         lblPlaca = new javax.swing.JLabel();
+        lblBtnAgregar = new javax.swing.JLabel();
+        lblTips = new javax.swing.JLabel();
+        lblBtnRepresentar = new javax.swing.JLabel();
+        rbnSinMovimiento = new javax.swing.JRadioButton();
+        rbnConMovimiento = new javax.swing.JRadioButton();
         lblFondoMenu = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 560));
+        setPreferredSize(new java.awt.Dimension(1000, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(51, 51, 51));
-        lblTitulo.setText("Campo entre placas");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 390, 70));
+        lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
+        lbtnAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnAbrirMenuMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 60, 60));
 
-        lblDensidadSuperficial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblDensidadSuperficial.setForeground(new java.awt.Color(51, 51, 51));
-        lblDensidadSuperficial.setText("Densidad superficial de carga:");
-        getContentPane().add(lblDensidadSuperficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 280, 50));
+        jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setFocusable(false);
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnVolverAtrasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 50));
+
+        lbtnIrCargas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCargasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 400, 60));
+
+        lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCreditosMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 60));
+
+        lbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnSalirMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
+
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizablePlaca.png"))); // NOI18N
+        jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
+
+        getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
         txtSigma.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtSigma.addActionListener(new java.awt.event.ActionListener() {
@@ -77,12 +129,12 @@ public class FrmPlaca extends javax.swing.JFrame {
                 txtSigmaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSigma, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 40, -1));
-
-        lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblX10.setForeground(new java.awt.Color(51, 51, 51));
-        lblX10.setText("X 10 ^");
-        getContentPane().add(lblX10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 60, 30));
+        txtSigma.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSigmaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtSigma, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 312, 36, 31));
 
         txtExp.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtExp.addActionListener(new java.awt.event.ActionListener() {
@@ -90,56 +142,72 @@ public class FrmPlaca extends javax.swing.JFrame {
                 txtExpActionPerformed(evt);
             }
         });
-        getContentPane().add(txtExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 30, -1));
-
-        lblC.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblC.setForeground(new java.awt.Color(51, 51, 51));
-        lblC.setText("C");
-        getContentPane().add(lblC, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 20, 30));
-
-        lblRepresentacion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblRepresentacion.setForeground(new java.awt.Color(51, 51, 51));
-        lblRepresentacion.setText("Representación:");
-        getContentPane().add(lblRepresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 160, 50));
-
-        buttonGroup1.add(rbnConMovimiento);
-        rbnConMovimiento.setText("Con movimiento");
-        rbnConMovimiento.setEnabled(false);
-        rbnConMovimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbnConMovimientoActionPerformed(evt);
+        txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtExpKeyReleased(evt);
             }
         });
-        getContentPane().add(rbnConMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, -1, -1));
+        getContentPane().add(txtExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 311, 36, 31));
+        getContentPane().add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 250, 60, 140));
+
+        lblBtnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBtnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnAgregarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 100, 30));
+
+        lblTips.setFont(new java.awt.Font("Dyuthi", 3, 24)); // NOI18N
+        lblTips.setForeground(new java.awt.Color(102, 102, 255));
+        lblTips.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTips.setText("TIP: Primero escribe los valores de la placa");
+        getContentPane().add(lblTips, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 1000, -1));
+
+        lblBtnRepresentar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBtnRepresentar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnRepresentarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblBtnRepresentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 377, 60, 60));
 
         buttonGroup1.add(rbnSinMovimiento);
-        rbnSinMovimiento.setText("Sin movimiento");
         rbnSinMovimiento.setEnabled(false);
         rbnSinMovimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbnSinMovimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(rbnSinMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+        getContentPane().add(rbnSinMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 336, -1, -1));
 
-        btnRepresentar.setText("Representar");
-        btnRepresentar.setEnabled(false);
-        btnRepresentar.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rbnConMovimiento);
+        rbnConMovimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbnConMovimiento.setEnabled(false);
+        rbnConMovimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRepresentarActionPerformed(evt);
+                rbnConMovimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRepresentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
+        getContentPane().add(rbnConMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 287, -1, -1));
 
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
-        getContentPane().add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, 60, 140));
-        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/placas fondo nuevo.png"))); // NOI18N
+        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1000, 580));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,14 +221,22 @@ public class FrmPlaca extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExpActionPerformed
 
     private void rbnConMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnConMovimientoActionPerformed
-        this.btnRepresentar.setEnabled(true);
+        lblBtnRepresentar.setEnabled(true);
+        lblTips.setText("¡Listo! Finalmente dale a START para visualizarlas.");
+        lblTips.setForeground(Color.GREEN);
     }//GEN-LAST:event_rbnConMovimientoActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void rbnSinMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnSinMovimientoActionPerformed
+        lblBtnRepresentar.setEnabled(true);
+        lblTips.setText("¡Listo! Finalmente dale a START para visualizarlas.");
+        lblTips.setForeground(Color.GREEN);
+    }//GEN-LAST:event_rbnSinMovimientoActionPerformed
+
+    private void lblBtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAgregarMouseClicked
         try {
             String url;
-            double sigma = Double.valueOf(this.txtSigma.getText()).doubleValue();
-            sigma *= Math.pow(10.0D, Integer.valueOf(this.txtExp.getText()).intValue());
+            double sigma = Double.parseDouble(this.txtSigma.getText());
+            sigma *= Math.pow(10.0D, Integer.parseInt(this.txtExp.getText()));
             placas.agregar(new Placa(sigma));
             this.rbnConMovimiento.setEnabled(true);
             this.rbnSinMovimiento.setEnabled(true);
@@ -176,30 +252,135 @@ public class FrmPlaca extends javax.swing.JFrame {
                 url = "img/PlacaNeutra.png";
             }
             this.lblPlaca.setIcon(iconoRedimensionado(url, this.lblPlaca));
+            lblTips.setForeground(new Color(102,102,255));
+            lblTips.setText("¡Muy bien! Continúa agregando placas o selecciona CON o SIN movimiento.");
         } catch (Exception ex) {
             String st = "Ingrese un valor para la placa";
             JOptionPane.showMessageDialog(null, st);
         }
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_lblBtnAgregarMouseClicked
 
-    private void rbnSinMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnSinMovimientoActionPerformed
-        this.btnRepresentar.setEnabled(true);
-    }//GEN-LAST:event_rbnSinMovimientoActionPerformed
-
-    private void btnRepresentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepresentarActionPerformed
+    private void lblBtnRepresentarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnRepresentarMouseClicked
         if (placas.tamano() > 0) {
-            dispose();
-            if (this.rbnConMovimiento.isSelected()) {
-                (new FrmPlacasConMov()).setVisible(true);
-            } else {
+            if(rbnConMovimiento.isSelected() || rbnSinMovimiento.isSelected()){
+                dispose();
+                if (this.rbnConMovimiento.isSelected()) {
+                    (new FrmPlacasConMov()).setVisible(true);
+                } else {
 
-                (new PlacasSinMov()).setVisible(true);
+                    (new PlacasSinMov()).setVisible(true);
+                }
             }
         } else {
-
-            JOptionPane.showMessageDialog(null, "Ingrese al menos una placa");
+            lblTips.setText("Ingrese al menos una placa");
+            lblTips.setForeground(Color.RED);
         }
-    }//GEN-LAST:event_btnRepresentarActionPerformed
+    }//GEN-LAST:event_lblBtnRepresentarMouseClicked
+
+    private void txtSigmaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSigmaKeyReleased
+        if(!txtExp.getText().equals("") && !txtSigma.getText().equals("")){
+            lblTips.setForeground(new Color(102,102,255));
+            lblTips.setText("¡Bien hecho! Ahora dale a agregar.");
+        }
+    }//GEN-LAST:event_txtSigmaKeyReleased
+
+    private void txtExpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyReleased
+                if(!txtExp.getText().equals("") && !txtSigma.getText().equals("")){
+                    lblTips.setForeground(new Color(102,102,255));
+                    lblTips.setText("¡Bien hecho! Ahora dale a agregar.");
+        }
+    }//GEN-LAST:event_txtExpKeyReleased
+
+    private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
+        if(!menuMoviendose){
+            if(menuAbierto){
+                menuAbierto = false;
+                ocultarMenu();
+            }else{
+                menuAbierto = true;
+                mostrarMenu();
+            }
+        }
+    }//GEN-LAST:event_lbtnAbrirMenuMouseClicked
+
+    private void mostrarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelMenu.getY() < 0){
+                    if(lbtnAbrirMenu.getRotation() < 7.83){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() + 0.15);
+                    }else{
+                        lbtnAbrirMenu.setRotation(7.83);
+                    }
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() + 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 5);
+    }
+    
+    private void ocultarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(lbtnAbrirMenu.getRotation() > 0){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() - 0.15);
+                }else{
+                        lbtnAbrirMenu.setRotation(0);
+                }
+                if(jPanelMenu.getY() > -jPanelMenu.getHeight()){
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() - 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
+    }
+    
+    private void lbtnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnVolverAtrasMouseClicked
+        setVisible(false);
+        new FrmMenu().setVisible(true);
+    }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
+
+    private void lbtnIrCargasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCargasMouseClicked
+        setVisible(false);
+        new FrmCargas().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCargasMouseClicked
+
+    private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCreditosMouseClicked
+
+    private void lbtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnSalirMouseClicked
+        jPanelPantallaNegra.setOpaque(true);
+        jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelPantallaNegra.getBackground().getAlpha() < 50){
+                    jPanelPantallaNegra.setBackground(new Color(0,0,0,jPanelPantallaNegra.getBackground().getAlpha() + 1));
+                }else{
+                    System.exit(0);
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
+    }//GEN-LAST:event_lbtnSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,16 +429,20 @@ public class FrmPlaca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnRepresentar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel lblC;
-    private javax.swing.JLabel lblDensidadSuperficial;
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPantallaNegra;
+    private javax.swing.JLabel lblBtnAgregar;
+    private javax.swing.JLabel lblBtnRepresentar;
     private javax.swing.JLabel lblFondoMenu;
+    private javax.swing.JLabel lblMenuFondo;
     private javax.swing.JLabel lblPlaca;
-    private javax.swing.JLabel lblRepresentacion;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblX10;
+    private javax.swing.JLabel lblTips;
+    private logica.JLabelRotar lbtnAbrirMenu;
+    private javax.swing.JLabel lbtnIrCargas;
+    private javax.swing.JLabel lbtnIrCreditos;
+    private javax.swing.JLabel lbtnSalir;
+    private javax.swing.JLabel lbtnVolverAtras;
     private javax.swing.JRadioButton rbnConMovimiento;
     private javax.swing.JRadioButton rbnSinMovimiento;
     private javax.swing.JTextField txtExp;

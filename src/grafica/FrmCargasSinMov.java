@@ -1,9 +1,9 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,6 +45,9 @@ public class FrmCargasSinMov extends javax.swing.JFrame {
     }
 
     private void iniciador() {
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
         setResizable(false);
         this.contador = 0;
 

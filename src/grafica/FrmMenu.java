@@ -1,8 +1,10 @@
 package grafica;
 
 import java.awt.Color;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -15,7 +17,10 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     public FrmMenu() {
         initComponents();
-        setTitle("PS: Menú | Equipo Dinamita");
+        setTitle("ES: Menú | Equipo Dinamita");
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
     }
 
@@ -28,20 +33,17 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblFondoMenu = new javax.swing.JLabel();
         lblBtnSalir = new javax.swing.JLabel();
         lblBtnCarga = new javax.swing.JLabel();
         lblBtnPlaca = new javax.swing.JLabel();
         lblBtnCreditos = new javax.swing.JLabel();
+        lblFondoMenu = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menu nuevo titulo dudoso.jpeg"))); // NOI18N
-        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
-
-        lblBtnSalir.setText("jLabel1");
+        lblBtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnSalirMouseClicked(evt);
@@ -49,6 +51,7 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         getContentPane().add(lblBtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 110, 100));
 
+        lblBtnCarga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnCarga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnCargaMouseClicked(evt);
@@ -56,6 +59,7 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         getContentPane().add(lblBtnCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 170, 90));
 
+        lblBtnPlaca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnPlaca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnPlacaMouseClicked(evt);
@@ -63,12 +67,16 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         getContentPane().add(lblBtnPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 170, 90));
 
+        lblBtnCreditos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnCreditosMouseClicked(evt);
             }
         });
         getContentPane().add(lblBtnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 90, 90));
+
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo menu nuevo.png"))); // NOI18N
+        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         jPanelPantallaNegra.setOpaque(false);
 
@@ -113,7 +121,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
     private void lblBtnPlacaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseClicked
         setVisible(false);
-        new FrmCargas().setVisible(true);
+        new FrmPlaca().setVisible(true);
     }//GEN-LAST:event_lblBtnPlacaMouseClicked
 
     private void lblBtnCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCreditosMouseClicked

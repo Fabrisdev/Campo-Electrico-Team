@@ -1,12 +1,16 @@
 package grafica;
 
+import java.awt.Color;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import logica.Vector;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -19,6 +23,9 @@ public class PlacasSinMov extends javax.swing.JFrame {
     private JLabel lblCarga;
     private PanelVector panelVector;
     private int contador;
+    private boolean menuAbierto;
+    private boolean menuMoviendose;
+
 
     public PlacasSinMov() {
         initComponents();
@@ -40,18 +47,71 @@ public class PlacasSinMov extends javax.swing.JFrame {
 
     private void crearPanelVector() {
         this.panelVector = new PanelVector(this.panel1.getBounds());
-        add(this.panelVector);
+        add(this.panelVector, new AbsoluteConstraints(0, 0, panelVector.getWidth(), panelVector.getHeight()));
         setComponentZOrder(this.panelVector, 0);
     }
 
+    private void mostrarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelMenu.getY() < 0){
+                    if(lbtnAbrirMenu.getRotation() < 7.83){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() + 0.15);
+                    }else{
+                        lbtnAbrirMenu.setRotation(7.83);
+                    }
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() + 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 5);
+    }
+    
+    private void ocultarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(lbtnAbrirMenu.getRotation() > 0){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() - 0.15);
+                }else{
+                        lbtnAbrirMenu.setRotation(0);
+                }
+                if(jPanelMenu.getY() > -jPanelMenu.getHeight()){
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() - 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
+    }
+    
     private void miInicializador() {
+        menuAbierto = false;
+        menuMoviendose = false;
+        txtCampo.setBackground(new Color(0,0,0,0));
+        txtFuerza.setBackground(new Color(0,0,0,0));
+        txtCarga.setBackground(new Color(0,0,0,0));
+        txtCargaExp.setBackground(new Color(0,0,0,0));
+        setTitle("ES: Placas sin movimiento | Equipo Dinamita");
         setResizable(false);
         this.txtCampo.setEditable(false);
         this.txtFuerza.setEditable(false);
         this.contador = 0;
 
         this.panelImagenes = new JPanel();
-        this.panelImagenes.setBounds(40, 40, 700, 500);
+        this.panelImagenes.setBounds(0, 40, 700, 500);
         this.panelImagenes.setLayout((LayoutManager) null);
         this.panelImagenes.setOpaque(false);
         this.lblCarga = new JLabel();
@@ -76,12 +136,15 @@ public class PlacasSinMov extends javax.swing.JFrame {
                         double fuerza = campo * valorCarga;
                         double anguloCampo = FrmPlaca.placas.anguloCampo(campo);
                         double anguloFuerza = FrmPlaca.placas.anguloFuerza(anguloCampo, valorCarga);
-
+                        System.out.println("a");
                         PlacasSinMov.this.eliminarPanelVector();
+                        System.out.println("b");
                         PlacasSinMov.this.crearPanelVector();
+                        System.out.println("ee");
                         PlacasSinMov.this.panelVector.representacion(new Vector(campo, anguloCampo), e.getPoint(), valorCarga);
+                        System.out.println("c");
                         PlacasSinMov.this.panelVector.repaint();
-
+                          System.out.println("xd");
                         if (campo == 0.0D) {
                             bandera = false;
                         }
@@ -119,141 +182,129 @@ public class PlacasSinMov extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblC = new javax.swing.JLabel();
+        lbtnAbrirMenu = new logica.JLabelRotar();
+        jPanelMenu = new javax.swing.JPanel();
+        lbtnVolverAtras = new javax.swing.JLabel();
+        lbtnIrCargas = new javax.swing.JLabel();
+        lbtnIrCreditos = new javax.swing.JLabel();
+        lbtnSalir = new javax.swing.JLabel();
+        lblMenuFondo = new javax.swing.JLabel();
         txtCarga = new javax.swing.JTextField();
-        lblTitulo = new javax.swing.JLabel();
-        lblFuerza = new javax.swing.JLabel();
-        lblX10 = new javax.swing.JLabel();
         txtCampo = new javax.swing.JTextField();
         txtCargaExp = new javax.swing.JTextField();
-        lblCampo = new javax.swing.JLabel();
-        lblCargaPrueba = new javax.swing.JLabel();
         txtFuerza = new javax.swing.JTextField();
+        lblFondoDatos = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblC.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblC.setText("C");
+        lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
+        lbtnAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnAbrirMenuMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 60, 60));
+
+        jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setFocusable(false);
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnVolverAtrasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 50));
+
+        lbtnIrCargas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCargasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 400, 60));
+
+        lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCreditosMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 60));
+
+        lbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnSalirMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
+
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizablePlaca.png"))); // NOI18N
+        jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
+
+        getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
         txtCarga.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCarga.setForeground(new java.awt.Color(255, 255, 255));
+        txtCarga.setBorder(null);
         txtCarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCargaActionPerformed(evt);
             }
         });
-
-        lblTitulo.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
-        lblTitulo.setText("Datos");
-
-        lblFuerza.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblFuerza.setText("Fuerza:");
-
-        lblX10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblX10.setText("X 10 ^");
+        getContentPane().add(txtCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 38, -1));
 
         txtCampo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCampo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCampo.setBorder(null);
         txtCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCampoActionPerformed(evt);
             }
         });
+        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 290, 133, -1));
 
         txtCargaExp.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCargaExp.setForeground(new java.awt.Color(255, 255, 255));
+        txtCargaExp.setBorder(null);
         txtCargaExp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCargaExpActionPerformed(evt);
             }
         });
-
-        lblCampo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCampo.setText("Campo:");
-
-        lblCargaPrueba.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCargaPrueba.setText("Carga:");
+        getContentPane().add(txtCargaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(923, 113, 30, -1));
 
         txtFuerza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtFuerza.setForeground(new java.awt.Color(255, 255, 255));
+        txtFuerza.setBorder(null);
         txtFuerza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFuerzaActionPerformed(evt);
             }
         });
+        getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 323, 130, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(70, 70, 70))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblCampo)
-                            .addGap(6, 6, 6)
-                            .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblCargaPrueba)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblX10)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblC)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblFuerza)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFuerza)))
-                .addGap(0, 12, Short.MAX_VALUE))
+        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/placas sin mov datos.png"))); // NOI18N
+        getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, -1, -1));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblTitulo)
-                .addGap(33, 33, 33)
-                .addComponent(lblCargaPrueba)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblX10)
-                    .addComponent(txtCargaExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblC))
-                .addGap(77, 77, 77)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCampo)
-                    .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFuerza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFuerza))
-                .addGap(230, 230, 230))
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoConHoja.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(770, 770, 770)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(lblFondo)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,6 +324,51 @@ public class PlacasSinMov extends javax.swing.JFrame {
     private void txtFuerzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFuerzaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFuerzaActionPerformed
+
+    private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
+        if(!menuMoviendose){
+            if(menuAbierto){
+                menuAbierto = false;
+                ocultarMenu();
+            }else{
+                menuAbierto = true;
+                mostrarMenu();
+            }
+        }
+    }//GEN-LAST:event_lbtnAbrirMenuMouseClicked
+
+    private void lbtnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnVolverAtrasMouseClicked
+        setVisible(false);
+        new FrmMenu().setVisible(true);
+    }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
+
+    private void lbtnIrCargasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCargasMouseClicked
+        setVisible(false);
+        new FrmCargas().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCargasMouseClicked
+
+    private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCreditosMouseClicked
+
+    private void lbtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnSalirMouseClicked
+        jPanelPantallaNegra.setOpaque(true);
+        jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelPantallaNegra.getBackground().getAlpha() < 50){
+                    jPanelPantallaNegra.setBackground(new Color(0,0,0,jPanelPantallaNegra.getBackground().getAlpha() + 1));
+                }else{
+                    System.exit(0);
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
+    }//GEN-LAST:event_lbtnSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -341,14 +437,16 @@ public class PlacasSinMov extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblC;
-    private javax.swing.JLabel lblCampo;
-    private javax.swing.JLabel lblCargaPrueba;
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblFondo;
-    private javax.swing.JLabel lblFuerza;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblX10;
+    private javax.swing.JLabel lblFondoDatos;
+    private javax.swing.JLabel lblMenuFondo;
+    private logica.JLabelRotar lbtnAbrirMenu;
+    private javax.swing.JLabel lbtnIrCargas;
+    private javax.swing.JLabel lbtnIrCreditos;
+    private javax.swing.JLabel lbtnSalir;
+    private javax.swing.JLabel lbtnVolverAtras;
     private javax.swing.JTextField txtCampo;
     private javax.swing.JTextField txtCarga;
     private javax.swing.JTextField txtCargaExp;
