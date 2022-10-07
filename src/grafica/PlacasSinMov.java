@@ -136,15 +136,10 @@ public class PlacasSinMov extends javax.swing.JFrame {
                         double fuerza = campo * valorCarga;
                         double anguloCampo = FrmPlaca.placas.anguloCampo(campo);
                         double anguloFuerza = FrmPlaca.placas.anguloFuerza(anguloCampo, valorCarga);
-                        System.out.println("a");
                         PlacasSinMov.this.eliminarPanelVector();
-                        System.out.println("b");
                         PlacasSinMov.this.crearPanelVector();
-                        System.out.println("ee");
                         PlacasSinMov.this.panelVector.representacion(new Vector(campo, anguloCampo), e.getPoint(), valorCarga);
-                        System.out.println("c");
                         PlacasSinMov.this.panelVector.repaint();
-                          System.out.println("xd");
                         if (campo == 0.0D) {
                             bandera = false;
                         }

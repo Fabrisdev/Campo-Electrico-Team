@@ -255,8 +255,8 @@ public class FrmPlaca extends javax.swing.JFrame {
             lblTips.setForeground(new Color(102,102,255));
             lblTips.setText("¡Muy bien! Continúa agregando placas o selecciona CON o SIN movimiento.");
         } catch (Exception ex) {
-            String st = "Ingrese un valor para la placa";
-            JOptionPane.showMessageDialog(null, st);
+            lblTips.setForeground(Color.RED);
+            lblTips.setText("¡Debes ingresar el valor de la placa primero!");
         }
     }//GEN-LAST:event_lblBtnAgregarMouseClicked
 
@@ -272,7 +272,7 @@ public class FrmPlaca extends javax.swing.JFrame {
                 }
             }
         } else {
-            lblTips.setText("Ingrese al menos una placa");
+            lblTips.setText("¡Ingresa al menos una placa!");
             lblTips.setForeground(Color.RED);
         }
     }//GEN-LAST:event_lblBtnRepresentarMouseClicked
