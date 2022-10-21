@@ -100,6 +100,7 @@ public class PlacasSinMov extends javax.swing.JFrame {
     }
     
     private void miInicializador() {
+        setLocationRelativeTo(null);
         menuAbierto = false;
         menuMoviendose = false;
         txtCampo.setBackground(new Color(0,0,0,0));

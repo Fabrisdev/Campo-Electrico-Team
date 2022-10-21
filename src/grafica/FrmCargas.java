@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.LayoutManager;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -59,6 +60,7 @@ public class FrmCargas extends javax.swing.JFrame {
     }
     
     private void iniciador() {
+        setLocationRelativeTo(null);
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
@@ -86,8 +88,6 @@ public class FrmCargas extends javax.swing.JFrame {
                 if(cbCargaPrueba.isSelected()){
                     try {
                         segundoPunto = e.getPoint();
-                        System.out.println("primer punto: "+primerPunto);
-                        System.out.println("segundo punto: "+segundoPunto);
                         double carga = Double.parseDouble(txtCarga.getText());
                         carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
                         Vector campo = cargas.sumarCampos(e.getX(), e.getY());
@@ -117,50 +117,44 @@ public class FrmCargas extends javax.swing.JFrame {
                     try {
                         if(!cbCargaPrueba.isSelected()){
                             primerPunto = e.getPoint();
-                            double valorCarga = Double.parseDouble(FrmCargas.this.txtCarga.getText());
-                            valorCarga *= Math.pow(10.0D, Integer.parseInt(FrmCargas.this.txtCargaExp.getText()));
-                            if (jPanel.getComponentAt(e.getPoint()).equals(jPanel)) {
-                                int x = e.getX();
-                                int y = e.getY();
-                                /*
-                                ImageIcon icon;
-                                
-                                if (valorCarga > 0.0D) {
-                                    icon = new ImageIcon(FrmCargas.class.getResource("img/CargaPositiva.png"));
-                                } else if (valorCarga < 0.0D) {
-                                    icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNegativa.png"));
-                                } else {
-                                
-                                    icon = new ImageIcon(FrmCargas.class.getResource("img/CargaNula.png"));
+                            double valorCarga = Double.parseDouble(txtCarga.getText());
+                            int exponente = Integer.parseInt(txtCargaExp.getText());
+                            if(exponente >= -10 && exponente <= 10){
+                                if(valorCarga >= -100 && valorCarga <= 100){
+                                    valorCarga *= Math.pow(10, exponente);
+                                    if (jPanel.getComponentAt(e.getPoint()).equals(jPanel)) {
+                                        int x = e.getX();
+                                        int y = e.getY();
+                                        int xMenor = (int) (Math.floor((x / 50) + 0.5D) * 50.0D);
+                                        int xMayor = (int) (Math.floor((x / 50 + 1)) * 50.0D);
+                                        if (Math.abs(x - xMenor) > Math.abs(x - xMayor)) {
+                                            x = xMayor;
+                                        } else {
+                                            x = xMenor;
+                                        }
+                                        int yMenor = (int) (Math.floor((y / 50) + 0.5D) * 50.0D);
+                                        int yMayor = (int) (Math.floor((y / 50 + 1)) * 50.0D);
+                                        if (Math.abs(y - yMenor) > Math.abs(y - yMayor)) {
+                                            y = yMayor;
+                                        } else {
+                                            y = yMenor;
+                                        }
+
+                                        cargas.agregar(new CargaFuente(valorCarga, x, y));
+                                        txtCarga.setText((String) null);
+                                        txtCargaExp.setText((String) null);
+                                        jPanel.repaint();
+                                    }
+                                    lblTips.setText("Puedes continuar colocando cargas o activar la opción CARGA DE PRUEBA.");
+                                    lblTips.setForeground(new Color(102, 102, 255));
+                                }else{
+                                    lblTips.setText("¡Ingresa un valor entre -100 y 100!");
+                                    lblTips.setForeground(Color.RED);
                                 }
-                                
-                                JLabel lbl = new JLabel();
-                                lbl.setBounds(x - 24, y - 24, 48, 48);
-                                lbl.setIcon(icon);
-                                */
-                                int xMenor = (int) (Math.floor((x / 50) + 0.5D) * 50.0D);
-                                int xMayor = (int) (Math.floor((x / 50 + 1)) * 50.0D);
-                                if (Math.abs(x - xMenor) > Math.abs(x - xMayor)) {
-                                    x = xMayor;
-                                } else {
-                                    x = xMenor;
-                                }
-                                int yMenor = (int) (Math.floor((y / 50) + 0.5D) * 50.0D);
-                                int yMayor = (int) (Math.floor((y / 50 + 1)) * 50.0D);
-                                if (Math.abs(y - yMenor) > Math.abs(y - yMayor)) {
-                                    y = yMayor;
-                                } else {
-                                    y = yMenor;
-                                }
-                                
-                                cargas.agregar(new CargaFuente(valorCarga, x, y));
-                                txtCarga.setText((String) null);
-                                txtCargaExp.setText((String) null);
-                                //FrmCargas.this.jPanel.add(lbl);
-                                jPanel.repaint();
+                            }else{
+                                lblTips.setText("¡Ingresa un exponente entre -10 y 10!");
+                                lblTips.setForeground(Color.RED);
                             }
-                            lblTips.setText("Puedes continuar colocando cargas o activar la opción CARGA DE PRUEBA.");
-                            lblTips.setForeground(new Color(102, 102, 255));
                         }
                     } catch (Exception ex) {
                         lblTips.setText("¡Debes ingresar al menos una carga!");
@@ -459,7 +453,8 @@ public class FrmCargas extends javax.swing.JFrame {
                         try {
                             boolean bandera = true;
                             double carga = Double.parseDouble(txtCarga.getText());
-                            carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
+                            int exponente = Integer.parseInt(txtCargaExp.getText());
+                            carga *= Math.pow(10, exponente);
                             Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
                             double moduloCampo = Math.round(campo.getModulo());
                             double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));

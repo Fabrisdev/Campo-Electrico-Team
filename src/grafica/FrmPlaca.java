@@ -35,6 +35,7 @@ public class FrmPlaca extends javax.swing.JFrame {
         menuAbierto = false;
         menuMoviendose = false;
         setTitle("PR: Placas | Equipo Dinamita");
+        setLocationRelativeTo(null);
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
@@ -75,7 +76,6 @@ public class FrmPlaca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 560));
-        setPreferredSize(new java.awt.Dimension(1000, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
@@ -192,7 +192,7 @@ public class FrmPlaca extends javax.swing.JFrame {
         getContentPane().add(rbnConMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 287, -1, -1));
 
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/placas fondo nuevo.png"))); // NOI18N
-        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1000, 580));
+        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
 

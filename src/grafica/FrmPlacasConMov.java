@@ -216,6 +216,7 @@ public class FrmPlacasConMov extends javax.swing.JFrame {
                 }
             }
         });
+        setLocationRelativeTo(null);
     }
 
     /**

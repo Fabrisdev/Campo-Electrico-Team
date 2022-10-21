@@ -22,6 +22,7 @@ public class FrmCreditos extends javax.swing.JFrame {
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
         setTitle("PR: Créditos | Equipo Dinamita");
+        setLocationRelativeTo(null);
         setResizable(false);
     }
 

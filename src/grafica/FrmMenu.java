@@ -22,6 +22,7 @@ public class FrmMenu extends javax.swing.JFrame {
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
