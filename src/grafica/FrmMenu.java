@@ -48,34 +48,58 @@ public class FrmMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnSalirMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtnSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtnSalirMouseExited(evt);
+            }
         });
-        getContentPane().add(lblBtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 110, 100));
+        getContentPane().add(lblBtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, 100, 70));
 
         lblBtnCarga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnCarga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnCargaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtnCargaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtnCargaMouseExited(evt);
+            }
         });
-        getContentPane().add(lblBtnCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 170, 90));
+        getContentPane().add(lblBtnCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 220, 80));
 
         lblBtnPlaca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnPlaca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnPlacaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtnPlacaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtnPlacaMouseExited(evt);
+            }
         });
-        getContentPane().add(lblBtnPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 170, 90));
+        getContentPane().add(lblBtnPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 240, 70));
 
         lblBtnCreditos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnCreditosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtnCreditosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtnCreditosMouseExited(evt);
+            }
         });
-        getContentPane().add(lblBtnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 90, 90));
+        getContentPane().add(lblBtnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 410, 90, 70));
 
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo menu nuevo.png"))); // NOI18N
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Weaaaaa.png"))); // NOI18N
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -128,6 +152,46 @@ public class FrmMenu extends javax.swing.JFrame {
         setVisible(false);
         new FrmCreditos().setVisible(true);
     }//GEN-LAST:event_lblBtnCreditosMouseClicked
+
+    private void lblBtnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSalirMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/WeaSalir.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnSalirMouseEntered
+
+    private void lblBtnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSalirMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnSalirMouseExited
+
+    private void lblBtnCreditosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCreditosMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/WeaCreditos.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnCreditosMouseEntered
+
+    private void lblBtnCreditosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCreditosMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnCreditosMouseExited
+
+    private void lblBtnCargaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCargaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/WeaCarga.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnCargaMouseEntered
+
+    private void lblBtnCargaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCargaMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnCargaMouseExited
+
+    private void lblBtnPlacaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/WeaPlaca.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnPlacaMouseEntered
+
+    private void lblBtnPlacaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnPlacaMouseExited
 
     /**
      * @param args the command line arguments

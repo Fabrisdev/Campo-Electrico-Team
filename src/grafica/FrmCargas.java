@@ -3,6 +3,7 @@ package grafica;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.LayoutManager;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -32,6 +33,9 @@ public class FrmCargas extends javax.swing.JFrame {
     private JPanel panelImagenes;
     private int contador;
 
+    private Point primerPunto;
+    private Point segundoPunto;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -61,7 +65,6 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCarga.setBackground(new Color(0,0,0,0));
         txtCargaExp.setBackground(new Color(0,0,0,0));
         txtCampo.setBackground(new Color(0,0,0,0));
-        txtFuerza.setBackground(new Color(0,0,0,0));
         lbtnAbrirMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.contador = 0;
         this.panelImagenes = new JPanel();
@@ -82,6 +85,9 @@ public class FrmCargas extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if(cbCargaPrueba.isSelected()){
                     try {
+                        segundoPunto = e.getPoint();
+                        System.out.println("primer punto: "+primerPunto);
+                        System.out.println("segundo punto: "+segundoPunto);
                         double carga = Double.parseDouble(txtCarga.getText());
                         carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
                         Vector campo = cargas.sumarCampos(e.getX(), e.getY());
@@ -99,7 +105,6 @@ public class FrmCargas extends javax.swing.JFrame {
         
         setTitle("ES: Cargas | Equipo Dinamita");
         txtCampo.setVisible(false);
-        txtFuerza.setVisible(false);
         menuMoviendose = false;
         menuAbierto = false;
         setResizable(false);
@@ -111,6 +116,7 @@ public class FrmCargas extends javax.swing.JFrame {
                 if(e.getButton() == CLICK_IZQUIERDO){
                     try {
                         if(!cbCargaPrueba.isSelected()){
+                            primerPunto = e.getPoint();
                             double valorCarga = Double.parseDouble(FrmCargas.this.txtCarga.getText());
                             valorCarga *= Math.pow(10.0D, Integer.parseInt(FrmCargas.this.txtCargaExp.getText()));
                             if (jPanel.getComponentAt(e.getPoint()).equals(jPanel)) {
@@ -218,7 +224,6 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCarga = new javax.swing.JTextField();
         txtCargaExp = new javax.swing.JTextField();
         txtCampo = new javax.swing.JTextField();
-        txtFuerza = new javax.swing.JTextField();
         cbCargaPrueba = new javax.swing.JCheckBox();
         lblFondoDatos = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
@@ -331,11 +336,6 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCampo.setForeground(new java.awt.Color(255, 255, 255));
         txtCampo.setBorder(null);
         getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 150, 30));
-
-        txtFuerza.setEditable(false);
-        txtFuerza.setForeground(new java.awt.Color(255, 255, 255));
-        txtFuerza.setBorder(null);
-        getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 410, 150, 30));
 
         cbCargaPrueba.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(756, 335, 20, -1));
@@ -485,9 +485,7 @@ public class FrmCargas extends javax.swing.JFrame {
                                 }
                             }
                             txtCampo.setVisible(true);
-                            txtFuerza.setVisible(true);
                             txtCampo.setText(strCampo);
-                            txtFuerza.setText(strFuerza);
                         } catch (Exception ex) {
                             lblTips.setText("¡Debes ingresar al menos una carga!");
                             lblTips.setForeground(Color.RED);
@@ -598,6 +596,5 @@ public class FrmCargas extends javax.swing.JFrame {
     private javax.swing.JTextField txtCampo;
     private javax.swing.JTextField txtCarga;
     private javax.swing.JTextField txtCargaExp;
-    private javax.swing.JTextField txtFuerza;
     // End of variables declaration//GEN-END:variables
 }

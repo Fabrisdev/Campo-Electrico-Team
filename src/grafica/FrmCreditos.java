@@ -48,7 +48,7 @@ public class FrmCreditos extends javax.swing.JFrame {
         });
         getContentPane().add(lblBtnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 90, 80));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/creditos.jpeg"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/PROGRAMADORA.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();

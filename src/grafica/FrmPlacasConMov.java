@@ -418,7 +418,7 @@ public class FrmPlacasConMov extends javax.swing.JFrame {
         });
         getContentPane().add(txtVel, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 427, 120, -1));
 
-        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo datos placas mov.png"))); // NOI18N
+        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoDatosPlacasNuevo.png"))); // NOI18N
         getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 290, 560));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N

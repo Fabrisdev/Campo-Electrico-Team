@@ -378,7 +378,7 @@
     <Component class="javax.swing.JLabel" name="lblFondoDatos">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/grafica/img/Fondo datos placas mov.png"/>
+          <Image iconType="3" name="/grafica/img/FondoDatosPlacasNuevo.png"/>
         </Property>
       </Properties>
       <Constraints>
