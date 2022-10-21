@@ -17,7 +17,7 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     public FrmMenu() {
         initComponents();
-        setTitle("ES: Menú | Equipo Dinamita");
+        setTitle("PR: Menú | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
@@ -37,6 +37,7 @@ public class FrmMenu extends javax.swing.JFrame {
         lblBtnCarga = new javax.swing.JLabel();
         lblBtnPlaca = new javax.swing.JLabel();
         lblBtnCreditos = new javax.swing.JLabel();
+        lblBtnLineaCarga = new javax.swing.JLabel();
         lblFondoMenu = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -98,6 +99,17 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblBtnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 410, 90, 70));
+
+        lblBtnLineaCarga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBtnLineaCarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtnLineaCargaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtnLineaCargaMouseExited(evt);
+            }
+        });
+        getContentPane().add(lblBtnLineaCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 470, 60));
 
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Weaaaaa.png"))); // NOI18N
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
@@ -193,6 +205,16 @@ public class FrmMenu extends javax.swing.JFrame {
         lblFondoMenu.setIcon(icon);
     }//GEN-LAST:event_lblBtnPlacaMouseExited
 
+    private void lblBtnLineaCargaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnLineaCargaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/WeaLinea.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnLineaCargaMouseEntered
+
+    private void lblBtnLineaCargaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnLineaCargaMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
+        lblFondoMenu.setIcon(icon);
+    }//GEN-LAST:event_lblBtnLineaCargaMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -233,6 +255,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblBtnCarga;
     private javax.swing.JLabel lblBtnCreditos;
+    private javax.swing.JLabel lblBtnLineaCarga;
     private javax.swing.JLabel lblBtnPlaca;
     private javax.swing.JLabel lblBtnSalir;
     private javax.swing.JLabel lblFondoMenu;

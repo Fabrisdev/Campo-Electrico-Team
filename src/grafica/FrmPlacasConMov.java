@@ -72,7 +72,7 @@ public class FrmPlacasConMov extends javax.swing.JFrame {
         txtVel.setBackground(new Color(0,0,0,0));
         txtDesp.setBackground(new Color(0,0,0,0));
         txtDdp.setBackground(new Color(0,0,0,0));
-        setTitle("ES: Placas con movimiento | Equipo Dinamita");
+        setTitle("PR: Placas con movimiento | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());

@@ -103,7 +103,7 @@ public class FrmCargas extends javax.swing.JFrame {
             }
         });
         
-        setTitle("ES: Cargas | Equipo Dinamita");
+        setTitle("PR: Cargas | Equipo Dinamita");
         txtCampo.setVisible(false);
         menuMoviendose = false;
         menuAbierto = false;
@@ -335,12 +335,12 @@ public class FrmCargas extends javax.swing.JFrame {
         txtCampo.setEditable(false);
         txtCampo.setForeground(new java.awt.Color(255, 255, 255));
         txtCampo.setBorder(null);
-        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 150, 30));
+        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 390, 150, 30));
 
         cbCargaPrueba.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(756, 335, 20, -1));
+        getContentPane().add(cbCargaPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(767, 324, 20, -1));
 
-        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo datos V2.png"))); // NOI18N
+        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Fondo3.png"))); // NOI18N
         getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 0, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N
@@ -458,31 +458,20 @@ public class FrmCargas extends javax.swing.JFrame {
                     if(!menuAbierto){
                         try {
                             boolean bandera = true;
-                            boolean bandera2 = true;
                             double carga = Double.parseDouble(txtCarga.getText());
                             carga *= Math.pow(10.0D, Integer.parseInt(txtCargaExp.getText()));
                             Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
                             double moduloCampo = Math.round(campo.getModulo());
                             double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
-                            double moduloFuerza = moduloCampo * Math.abs(carga);
-                            double anguloFuerza = cargas.anguloFuerza(anguloCampo, carga);
                             eliminarPanelVector();
                             crearPanelVector();
                             panel.representacion(campo, evt.getPoint(), carga);
-                            panel.repaint();
-                            if (moduloCampo == 0.0D) {
+                            if (moduloCampo == 0) {
                                 bandera = false;
                             }
-                            if (carga == 0.0D) {
-                                bandera2 = false;
-                            }
                             String strCampo = String.format("%6.2e", new Object[]{ moduloCampo }) + "N/C   ";
-                            String strFuerza = String.format("%6.2e", new Object[]{ moduloFuerza }) + "N   ";
                             if (bandera) {
                                 strCampo = strCampo + anguloCampo + "°";
-                                if (bandera2) {
-                                    strFuerza = strFuerza + anguloFuerza + "°";
-                                }
                             }
                             txtCampo.setVisible(true);
                             txtCampo.setText(strCampo);

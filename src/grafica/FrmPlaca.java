@@ -34,7 +34,7 @@ public class FrmPlaca extends javax.swing.JFrame {
     private void miInicializador() {
         menuAbierto = false;
         menuMoviendose = false;
-        setTitle("ES: Placas | Equipo Dinamita");
+        setTitle("PR: Placas | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());

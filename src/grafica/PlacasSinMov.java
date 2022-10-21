@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -104,7 +106,10 @@ public class PlacasSinMov extends javax.swing.JFrame {
         txtFuerza.setBackground(new Color(0,0,0,0));
         txtCarga.setBackground(new Color(0,0,0,0));
         txtCargaExp.setBackground(new Color(0,0,0,0));
-        setTitle("ES: Placas sin movimiento | Equipo Dinamita");
+        setTitle("PR: Placas sin movimiento | Equipo Dinamita");
+        URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
+        ImageIcon imagenIcono = new ImageIcon(icono);
+        this.setIconImage( imagenIcono.getImage());
         setResizable(false);
         this.txtCampo.setEditable(false);
         this.txtFuerza.setEditable(false);
@@ -280,7 +285,7 @@ public class PlacasSinMov extends javax.swing.JFrame {
         });
         getContentPane().add(txtFuerza, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 323, 130, -1));
 
-        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/placas sin mov datos.png"))); // NOI18N
+        lblFondoDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Wea.png"))); // NOI18N
         getContentPane().add(lblFondoDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/fondo-hoja.png"))); // NOI18N
