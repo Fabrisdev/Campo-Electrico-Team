@@ -1,11 +1,21 @@
 package grafica;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-
 /**
  *
  * @author Paña
@@ -18,13 +28,35 @@ public class FrmMenu extends javax.swing.JFrame {
     public FrmMenu() {
         initComponents();
         setTitle("PR: Menú | Equipo Dinamita");
+        
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
         setLocationRelativeTo(null);
+        //Crear la font
+        Font customFont;
+        try {
+            URL urlFont = getClass().getResource("/fonts/pristina.ttf");
+            String urlFontConverted = urlFont.toString().replaceAll("%20", " ");
+            urlFontConverted = urlFontConverted.replaceAll("file:", "");
+            urlFontConverted = urlFontConverted.replaceAll("Proyecto_Campo_Electrico.jar!/", "");
+            urlFontConverted = urlFontConverted.replaceAll("jar:", "");
+            //System.out.println(urlFontConverted);
+            System.out.println(urlFontConverted);
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File(urlFontConverted)).deriveFont(12f);
+            //Obtener las fonts ya registradas
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //Registrar la font
+            ge.registerFont(customFont);
+        } catch (FontFormatException | IOException ex) {
+            System.out.println("No se pudo registrar la font");
+            ex.printStackTrace();
+        }
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +185,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
     private void lblBtnCargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCargaMouseClicked
         setVisible(false);
-        new FrmCargas().setVisible(true);
+        new FrmOpcionesCargas().setVisible(true);
     }//GEN-LAST:event_lblBtnCargaMouseClicked
 
     private void lblBtnPlacaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseClicked

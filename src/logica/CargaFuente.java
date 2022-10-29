@@ -43,7 +43,7 @@ public class CargaFuente {
         Vector vectorCampo;
         double angulo, radicando = Math.pow(xPunto - this.xCarga, 2.0D) + Math.pow(yPunto - this.yCarga, 2.0D);
         double distancia = Math.sqrt(radicando);
-        double k = 9.0D * Math.pow(10.0D, 9.0D);
+        double k = 9e9;
         double moduloCampo = k * Math.abs(this.valorCarga) / Math.pow(distancia, 2.0D);
 
         double signo = Math.signum(this.valorCarga);
@@ -62,5 +62,10 @@ public class CargaFuente {
             vectorCampo = new Vector(moduloCampo, angulo);
         }
         return vectorCampo;
+    }
+    
+    @Override
+    public String toString(){
+        return "[x: "+xCarga+", y: "+yCarga+"]";
     }
 }

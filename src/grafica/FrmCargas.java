@@ -116,6 +116,7 @@ public class FrmCargas extends javax.swing.JFrame {
                 if(e.getButton() == CLICK_IZQUIERDO){
                     try {
                         if(!cbCargaPrueba.isSelected()){
+                            System.out.println("CARGA NORMAL: "+ e.getPoint());
                             primerPunto = e.getPoint();
                             double valorCarga = Double.parseDouble(txtCarga.getText());
                             int exponente = Integer.parseInt(txtCargaExp.getText());
@@ -139,7 +140,6 @@ public class FrmCargas extends javax.swing.JFrame {
                                         } else {
                                             y = yMenor;
                                         }
-
                                         cargas.agregar(new CargaFuente(valorCarga, x, y));
                                         txtCarga.setText((String) null);
                                         txtCargaExp.setText((String) null);
@@ -451,10 +451,13 @@ public class FrmCargas extends javax.swing.JFrame {
                 if(cargas.tamano() > 0){
                     if(!menuAbierto){
                         try {
+                            System.out.println("CARGA PRUEBA: "+ evt.getPoint());
                             boolean bandera = true;
                             double carga = Double.parseDouble(txtCarga.getText());
                             int exponente = Integer.parseInt(txtCargaExp.getText());
                             carga *= Math.pow(10, exponente);
+                            System.out.println("valor carga: "+carga);
+                            System.out.println(cargas.mostrar());
                             Vector campo = cargas.sumarCampos(evt.getX(), evt.getY());
                             double moduloCampo = Math.round(campo.getModulo());
                             double anguloCampo = Math.round(Math.toDegrees(-campo.getAngulo()));
