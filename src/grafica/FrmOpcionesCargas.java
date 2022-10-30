@@ -42,6 +42,12 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBtn3Carga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtn3CargaMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblBtn3Carga, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 340, 80));
 
         lblBtn1Carga.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,6 +68,11 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
         setVisible(false);
         new Frm1Carga().setVisible(true);
     }//GEN-LAST:event_lblBtn1CargaMouseClicked
+
+    private void lblBtn3CargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn3CargaMouseClicked
+        setVisible(false);
+        new Frm3CargaOpciones().setVisible(true);
+    }//GEN-LAST:event_lblBtn3CargaMouseClicked
 
     /**
      * @param args the command line arguments
