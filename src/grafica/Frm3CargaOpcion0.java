@@ -14,6 +14,8 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
@@ -26,6 +28,9 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     /**
      * Creates new form FrmOpcionesCargas
      */
+      private boolean menuAbierto;
+    private boolean menuMoviendose;
+    
     public Frm3CargaOpcion0() {
         initComponents();
         setTitle("PR: Tres cargas | Equipo Dinamita");
@@ -43,6 +48,14 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         txtCargaQ3.setBackground(new Color(0,0,0,0));
         txtDistanciaQ3.setBackground(new Color(0,0,0,0));
         txtExponenteQ3.setBackground(new Color(0,0,0,0));
+        positivaQ1.setVisible(false);
+        negativaQ1.setVisible(false);
+        positivaQ2.setVisible(false);
+        negativaQ2.setVisible(false);
+        positivaQ3.setVisible(false);
+        negativaQ3.setVisible(false);
+        flechaIzq.setVisible(false);
+        flechaDer.setVisible(false);
         try {
             URL urlFont = getClass().getResource("/fonts/pristina.ttf");
             String urlFontConverted = urlFont.toString().replaceAll("%20", " ");
@@ -90,6 +103,14 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbtnAbrirMenu = new logica.JLabelRotar();
+        jPanelMenu = new javax.swing.JPanel();
+        lbtnVolverAtras = new javax.swing.JLabel();
+        lbtnIrPlacas = new javax.swing.JLabel();
+        lbtnIrCreditos = new javax.swing.JLabel();
+        lbtnSalir = new javax.swing.JLabel();
+        lblIrLinea = new javax.swing.JLabel();
+        lblMenuFondo = new javax.swing.JLabel();
         txtCargaQ2 = new javax.swing.JTextField();
         txtCargaQ3 = new javax.swing.JTextField();
         txtCargaQ1 = new javax.swing.JTextField();
@@ -100,10 +121,72 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         txtExponenteQ2 = new javax.swing.JTextField();
         txtExponenteQ1 = new javax.swing.JTextField();
         lblCampo = new javax.swing.JLabel();
+        positivaQ1 = new javax.swing.JLabel();
+        negativaQ1 = new javax.swing.JLabel();
+        positivaQ2 = new javax.swing.JLabel();
+        negativaQ2 = new javax.swing.JLabel();
+        positivaQ3 = new javax.swing.JLabel();
+        negativaQ3 = new javax.swing.JLabel();
+        flechaIzq = new javax.swing.JLabel();
+        flechaDer = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
+        lbtnAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnAbrirMenuMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 60, 60));
+
+        jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setFocusable(false);
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnVolverAtrasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 50));
+
+        lbtnIrPlacas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrPlacasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 400, 70));
+
+        lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCreditosMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 60));
+
+        lbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnSalirMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
+
+        lblIrLinea.setText("jLabel1");
+        lblIrLinea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIrLineaMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lblIrLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 400, 50));
+
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizableCarga.png"))); // NOI18N
+        jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
+
+        getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
         txtCargaQ2.setBorder(null);
         txtCargaQ2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -178,8 +261,47 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         getContentPane().add(txtExponenteQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
         getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
 
+        positivaQ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
+        getContentPane().add(positivaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, -1, -1));
+
+        negativaQ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
+        getContentPane().add(negativaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, -1, -1));
+
+        positivaQ2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
+        getContentPane().add(positivaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 237, -1, -1));
+
+        negativaQ2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
+        getContentPane().add(negativaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 237, -1, -1));
+
+        positivaQ3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
+        getContentPane().add(positivaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 237, -1, -1));
+
+        negativaQ3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
+        getContentPane().add(negativaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 237, -1, -1));
+
+        flechaIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaIzq.png"))); // NOI18N
+        getContentPane().add(flechaIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+
+        flechaDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaDer.png"))); // NOI18N
+        getContentPane().add(flechaDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/3Opcion1Seleccion.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,22 +338,94 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
                         double cargaCompletaQ3 = cargaQ3 * Math.pow(10, exponenteQ3);
                         double campoQ3 = (k * Math.abs(cargaCompletaQ3)) / Math.pow(distanciaQ3, 2);
                         double campoResultante;
-                        if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0)
+                        if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0){
                             campoResultante = (campoQ2 + campoQ3) - campoQ1;
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0)
+                            if((campoQ2 + campoQ3) > campoQ1){
+                                flechaIzq.setVisible(true);
+                                flechaDer.setVisible(false);
+                            }else if((campoQ2 + campoQ3) < campoQ1){
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(true);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
+                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0){
                             campoResultante = campoQ1 + campoQ2 + campoQ3;
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0)
+                            flechaIzq.setVisible(true);
+                            flechaDer.setVisible(false);
+                        }
+                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0){
                             campoResultante = (campoQ1 + campoQ2) - campoQ3;
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0)
+                            if((campoQ1 + campoQ2) > campoQ3){
+                                flechaDer.setVisible(true);
+                                flechaIzq.setVisible(false);
+                            }else if((campoQ1 + campoQ2) < campoQ3){
+                                flechaDer.setVisible(false);
+                                flechaIzq.setVisible(true);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
+                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0){
                             campoResultante = (campoQ1 + campoQ3) - campoQ2;
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 < 0)
+                            if((campoQ1 + campoQ3) > campoQ2){
+                                flechaDer.setVisible(true);
+                                flechaIzq.setVisible(false);
+                            }else if((campoQ1 + campoQ3) < campoQ2){
+                                flechaDer.setVisible(false);
+                                flechaIzq.setVisible(true);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
+                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 < 0){
                             campoResultante = campoQ1 + campoQ2 + campoQ3;
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0)
+                            flechaDer.setVisible(true);
+                            flechaIzq.setVisible(false);
+                        }
+                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0){
                             campoResultante = (campoQ1 + campoQ2) - campoQ3;
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0)
+                            if((campoQ1 + campoQ2) > campoQ3){
+                                flechaDer.setVisible(false);
+                                flechaIzq.setVisible(true);
+                            }else if((campoQ1 + campoQ2) < campoQ3){
+                                flechaDer.setVisible(true);
+                                flechaIzq.setVisible(false);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
+                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0){
                             campoResultante = (campoQ1 + campoQ3) - campoQ2;
-                        else
+                            if((campoQ1 + campoQ3) > campoQ2){
+                                flechaDer.setVisible(false);
+                                flechaIzq.setVisible(true);
+                            }else if((campoQ1 + campoQ3) < campoQ2){
+                                flechaDer.setVisible(true);
+                                flechaIzq.setVisible(false);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
+                        else{
                             campoResultante = (campoQ2 + campoQ3) - campoQ1;
+                            if((campoQ2 + campoQ3) > campoQ1){
+                                flechaDer.setVisible(true);
+                                flechaIzq.setVisible(false);
+                            }else if((campoQ2 + campoQ3) < campoQ1){
+                                flechaDer.setVisible(false);
+                                flechaIzq.setVisible(true);
+                            }else{
+                                flechaIzq.setVisible(false);
+                                flechaDer.setVisible(false);
+                            }
+                        }
                         DecimalFormat f = new DecimalFormat("0.##E0");
                         lblCampo.setText(f.format(campoResultante));
                     }
@@ -311,10 +505,73 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     
     private void txtCargaQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ1KeyReleased
         revisarTexto(txtCargaQ1);
+        if(esNumero(txtCargaQ1.getText())){
+            double carga = Double.parseDouble(txtCargaQ1.getText());
+            if(carga > 0){
+                positivaQ1.setVisible(true);
+                negativaQ1.setVisible(false);
+            }else if(carga < 0){
+                negativaQ1.setVisible(true);
+                positivaQ1.setVisible(false);
+            }else{
+                positivaQ1.setVisible(false);
+                negativaQ1.setVisible(false);
+            }
+        }else{
+            positivaQ1.setVisible(false);
+            negativaQ1.setVisible(false);
+        }
     }//GEN-LAST:event_txtCargaQ1KeyReleased
 
+                private void mostrarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelMenu.getY() < 0){
+                    if(lbtnAbrirMenu.getRotation() < 7.83){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() + 0.15);
+                    }else{
+                        lbtnAbrirMenu.setRotation(7.83);
+                    }
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() + 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 5);
+    }
+    
+    private void ocultarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(lbtnAbrirMenu.getRotation() > 0){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() - 0.15);
+                }else{
+                        lbtnAbrirMenu.setRotation(0);
+                }
+                if(jPanelMenu.getY() > -jPanelMenu.getHeight()){
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() - 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
+    }
+    
     private void txtDistanciaQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistanciaQ1KeyReleased
         revisarTextoPositivo(txtDistanciaQ1);
+        
     }//GEN-LAST:event_txtDistanciaQ1KeyReleased
 
     private void txtExponenteQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExponenteQ1KeyReleased
@@ -323,10 +580,42 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
 
     private void txtCargaQ3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ3KeyReleased
         revisarTexto(txtCargaQ3);
+        if(esNumero(txtCargaQ3.getText())){
+            double carga = Double.parseDouble(txtCargaQ3.getText());
+            if(carga > 0){
+                positivaQ3.setVisible(true);
+                negativaQ3.setVisible(false);
+            }else if(carga < 0){
+                negativaQ3.setVisible(true);
+                positivaQ3.setVisible(false);
+            }else{
+                positivaQ3.setVisible(false);
+                negativaQ3.setVisible(false);
+            }
+        }else{
+            positivaQ3.setVisible(false);
+            negativaQ3.setVisible(false);
+        }
     }//GEN-LAST:event_txtCargaQ3KeyReleased
 
     private void txtCargaQ2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ2KeyReleased
         revisarTexto(txtCargaQ2);
+        if(esNumero(txtCargaQ2.getText())){
+            double carga = Double.parseDouble(txtCargaQ2.getText());
+            if(carga > 0){
+                positivaQ2.setVisible(true);
+                negativaQ2.setVisible(false);
+            }else if(carga < 0){
+                negativaQ2.setVisible(true);
+                positivaQ2.setVisible(false);
+            }else{
+                positivaQ2.setVisible(false);
+                negativaQ2.setVisible(false);
+            }
+        }else{
+            positivaQ2.setVisible(false);
+            negativaQ2.setVisible(false);
+        }
     }//GEN-LAST:event_txtCargaQ2KeyReleased
 
     private void txtDistanciaQ2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistanciaQ2KeyReleased
@@ -344,6 +633,56 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     private void txtExponenteQ3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExponenteQ3KeyReleased
        revisarExponente(txtExponenteQ3);
     }//GEN-LAST:event_txtExponenteQ3KeyReleased
+
+    private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
+        if(!menuMoviendose){
+            if(menuAbierto){
+                menuAbierto = false;
+                ocultarMenu();
+            }else{
+                menuAbierto = true;
+                mostrarMenu();
+            }
+        }
+    }//GEN-LAST:event_lbtnAbrirMenuMouseClicked
+
+    private void lbtnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnVolverAtrasMouseClicked
+        setVisible(false);
+        new FrmMenu().setVisible(true);
+    }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
+
+    private void lbtnIrPlacasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrPlacasMouseClicked
+        setVisible(false);
+        new FrmOpcionesPlacas().setVisible(true);
+    }//GEN-LAST:event_lbtnIrPlacasMouseClicked
+
+    private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCreditosMouseClicked
+
+    private void lbtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnSalirMouseClicked
+        jPanelPantallaNegra.setOpaque(true);
+        jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelPantallaNegra.getBackground().getAlpha() < 50){
+                    jPanelPantallaNegra.setBackground(new Color(0,0,0,jPanelPantallaNegra.getBackground().getAlpha() + 1));
+                }else{
+                    System.exit(0);
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
+    }//GEN-LAST:event_lbtnSalirMouseClicked
+
+    private void lblIrLineaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIrLineaMouseClicked
+        setVisible(false);
+        new FrmOpcionesLineas().setVisible(true);
+    }//GEN-LAST:event_lblIrLineaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -384,8 +723,25 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel flechaDer;
+    private javax.swing.JLabel flechaIzq;
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblCampo;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblIrLinea;
+    private javax.swing.JLabel lblMenuFondo;
+    private logica.JLabelRotar lbtnAbrirMenu;
+    private javax.swing.JLabel lbtnIrCreditos;
+    private javax.swing.JLabel lbtnIrPlacas;
+    private javax.swing.JLabel lbtnSalir;
+    private javax.swing.JLabel lbtnVolverAtras;
+    private javax.swing.JLabel negativaQ1;
+    private javax.swing.JLabel negativaQ2;
+    private javax.swing.JLabel negativaQ3;
+    private javax.swing.JLabel positivaQ1;
+    private javax.swing.JLabel positivaQ2;
+    private javax.swing.JLabel positivaQ3;
     private javax.swing.JTextField txtCargaQ1;
     private javax.swing.JTextField txtCargaQ2;
     private javax.swing.JTextField txtCargaQ3;

@@ -135,6 +135,9 @@ public class FrmMenu extends javax.swing.JFrame {
 
         lblBtnLineaCarga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtnLineaCarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnLineaCargaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblBtnLineaCargaMouseEntered(evt);
             }
@@ -190,7 +193,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
     private void lblBtnPlacaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnPlacaMouseClicked
         setVisible(false);
-        new FrmPlaca().setVisible(true);
+        new FrmOpcionesPlacas().setVisible(true);
     }//GEN-LAST:event_lblBtnPlacaMouseClicked
 
     private void lblBtnCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnCreditosMouseClicked
@@ -247,6 +250,11 @@ public class FrmMenu extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/Weaaaaa.png"));
         lblFondoMenu.setIcon(icon);
     }//GEN-LAST:event_lblBtnLineaCargaMouseExited
+
+    private void lblBtnLineaCargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnLineaCargaMouseClicked
+        setVisible(false);
+        new FrmOpcionesLineas().setVisible(true);
+    }//GEN-LAST:event_lblBtnLineaCargaMouseClicked
 
     /**
      * @param args the command line arguments

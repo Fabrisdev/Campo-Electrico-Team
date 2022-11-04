@@ -4,7 +4,10 @@
  */
 package grafica;
 
+import java.awt.Color;
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,6 +19,10 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
     /**
      * Creates new form FrmOpcionesCargas
      */
+      private boolean menuAbierto;
+    private boolean menuMoviendose;
+    
+    
     public FrmOpcionesCargas() {
         initComponents();
         setTitle("PR: Opciones cargas | Equipo Dinamita");
@@ -35,17 +42,85 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbtnAbrirMenu = new logica.JLabelRotar();
+        jPanelMenu = new javax.swing.JPanel();
+        lbtnVolverAtras = new javax.swing.JLabel();
+        lbtnIrPlacas = new javax.swing.JLabel();
+        lbtnIrCreditos = new javax.swing.JLabel();
+        lbtnSalir = new javax.swing.JLabel();
+        lblIrLinea = new javax.swing.JLabel();
+        lblMenuFondo = new javax.swing.JLabel();
         lblBtn3Carga = new javax.swing.JLabel();
         lblBtn1Carga = new javax.swing.JLabel();
         lblBtn2Carga = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
+        jPanelPantallaNegra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lbtnAbrirMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/botonAbrirMenu.png"))); // NOI18N
+        lbtnAbrirMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnAbrirMenuMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 60, 60));
+
+        jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setFocusable(false);
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbtnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnVolverAtrasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 50));
+
+        lbtnIrPlacas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrPlacasMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 400, 70));
+
+        lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnIrCreditosMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnIrCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 60));
+
+        lbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbtnSalirMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
+
+        lblIrLinea.setText("jLabel1");
+        lblIrLinea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIrLineaMouseClicked(evt);
+            }
+        });
+        jPanelMenu.add(lblIrLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 400, 50));
+
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizableCarga.png"))); // NOI18N
+        jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
+
+        getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
+
         lblBtn3Carga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtn3CargaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtn3CargaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtn3CargaMouseExited(evt);
             }
         });
         getContentPane().add(lblBtn3Carga, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 340, 80));
@@ -54,12 +129,45 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtn1CargaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtn1CargaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtn1CargaMouseExited(evt);
+            }
         });
         getContentPane().add(lblBtn1Carga, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 340, 80));
+
+        lblBtn2Carga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtn2CargaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBtn2CargaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBtn2CargaMouseExited(evt);
+            }
+        });
         getContentPane().add(lblBtn2Carga, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 340, 80));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FondoOpcionesCarga.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
+
+        jPanelPantallaNegra.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelPantallaNegraLayout = new javax.swing.GroupLayout(jPanelPantallaNegra);
+        jPanelPantallaNegra.setLayout(jPanelPantallaNegraLayout);
+        jPanelPantallaNegraLayout.setHorizontalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        jPanelPantallaNegraLayout.setVerticalGroup(
+            jPanelPantallaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelPantallaNegra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -73,6 +181,137 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
         setVisible(false);
         new Frm3CargaOpciones().setVisible(true);
     }//GEN-LAST:event_lblBtn3CargaMouseClicked
+
+    private void lblBtn1CargaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn1CargaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoEn1Carga.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn1CargaMouseEntered
+
+    private void lblBtn1CargaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn1CargaMouseExited
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoOpcionesCarga.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn1CargaMouseExited
+
+    private void lblBtn2CargaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn2CargaMouseExited
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoOpcionesCarga.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn2CargaMouseExited
+
+    private void lblBtn3CargaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn3CargaMouseExited
+               ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoOpcionesCarga.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn3CargaMouseExited
+
+    private void lblBtn2CargaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn2CargaMouseEntered
+         ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoEn2Cargas.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn2CargaMouseEntered
+
+    private void lblBtn3CargaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn3CargaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/FondoEn3Cargas.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblBtn3CargaMouseEntered
+
+    private void lblBtn2CargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn2CargaMouseClicked
+        setVisible(false);
+        new Frm2CargaOpciones().setVisible(true);
+    }//GEN-LAST:event_lblBtn2CargaMouseClicked
+
+           private void mostrarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelMenu.getY() < 0){
+                    if(lbtnAbrirMenu.getRotation() < 7.83){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() + 0.15);
+                    }else{
+                        lbtnAbrirMenu.setRotation(7.83);
+                    }
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() + 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 5);
+    }
+    
+    private void ocultarMenu(){
+        Timer cronometro = new Timer();
+        TimerTask mostrarMenuTimer = new TimerTask(){
+            @Override
+            public void run() {
+                if(lbtnAbrirMenu.getRotation() > 0){
+                        lbtnAbrirMenu.setRotation(lbtnAbrirMenu.getRotation() - 0.15);
+                }else{
+                        lbtnAbrirMenu.setRotation(0);
+                }
+                if(jPanelMenu.getY() > -jPanelMenu.getHeight()){
+                    menuMoviendose = true;
+                    int nuevaY = jPanelMenu.getY() - 8;
+                    jPanelMenu.setLocation(0, nuevaY);
+                }else{
+                    menuMoviendose = false;
+                    cancel();
+                }
+            }   
+        };
+        cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
+    }
+    
+    private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
+        if(!menuMoviendose){
+            if(menuAbierto){
+                menuAbierto = false;
+                ocultarMenu();
+            }else{
+                menuAbierto = true;
+                mostrarMenu();
+            }
+        }
+    }//GEN-LAST:event_lbtnAbrirMenuMouseClicked
+
+    private void lbtnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnVolverAtrasMouseClicked
+        setVisible(false);
+        new FrmMenu().setVisible(true);
+    }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
+
+    private void lbtnIrPlacasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrPlacasMouseClicked
+        setVisible(false);
+        new FrmOpcionesPlacas().setVisible(true);
+    }//GEN-LAST:event_lbtnIrPlacasMouseClicked
+
+    private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
+        setVisible(false);
+        new FrmCreditos().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCreditosMouseClicked
+
+    private void lbtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnSalirMouseClicked
+        jPanelPantallaNegra.setOpaque(true);
+        jPanelPantallaNegra.setBackground(new Color(0,0,0,0));
+        Timer cronometro = new Timer();
+        TimerTask ajustarOpacidad = new TimerTask(){
+            @Override
+            public void run() {
+                if(jPanelPantallaNegra.getBackground().getAlpha() < 50){
+                    jPanelPantallaNegra.setBackground(new Color(0,0,0,jPanelPantallaNegra.getBackground().getAlpha() + 1));
+                }else{
+                    System.exit(0);
+                    cancel();
+                }
+            }
+        };
+        cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
+    }//GEN-LAST:event_lbtnSalirMouseClicked
+
+    private void lblIrLineaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIrLineaMouseClicked
+        setVisible(false);
+        new FrmOpcionesLineas().setVisible(true);
+    }//GEN-LAST:event_lblIrLineaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,9 +349,18 @@ public class FrmOpcionesCargas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblBtn1Carga;
     private javax.swing.JLabel lblBtn2Carga;
     private javax.swing.JLabel lblBtn3Carga;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblIrLinea;
+    private javax.swing.JLabel lblMenuFondo;
+    private logica.JLabelRotar lbtnAbrirMenu;
+    private javax.swing.JLabel lbtnIrCreditos;
+    private javax.swing.JLabel lbtnIrPlacas;
+    private javax.swing.JLabel lbtnSalir;
+    private javax.swing.JLabel lbtnVolverAtras;
     // End of variables declaration//GEN-END:variables
 }
