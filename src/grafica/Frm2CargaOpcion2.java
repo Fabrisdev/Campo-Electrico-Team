@@ -23,17 +23,19 @@ import javax.swing.JTextField;
  *
  * @author Fabri
  */
-public class Frm3CargaOpcion0 extends javax.swing.JFrame {
+public class Frm2CargaOpcion2 extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmOpcionesCargas
      */
-      private boolean menuAbierto;
+    private boolean menuAbierto;
     private boolean menuMoviendose;
     
-    public Frm3CargaOpcion0() {
+    public Frm2CargaOpcion2() {
         initComponents();
-        setTitle("PR: Tres cargas | Equipo Dinamita");
+        flechaIzq.setVisible(false);
+        flechaDer.setVisible(false);
+        setTitle("PR: Dos cargas | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
@@ -45,17 +47,6 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         txtCargaQ2.setBackground(new Color(0,0,0,0));
         txtDistanciaQ2.setBackground(new Color(0,0,0,0));
         txtExponenteQ2.setBackground(new Color(0,0,0,0));
-        txtCargaQ3.setBackground(new Color(0,0,0,0));
-        txtDistanciaQ3.setBackground(new Color(0,0,0,0));
-        txtExponenteQ3.setBackground(new Color(0,0,0,0));
-        positivaQ1.setVisible(false);
-        negativaQ1.setVisible(false);
-        positivaQ2.setVisible(false);
-        negativaQ2.setVisible(false);
-        positivaQ3.setVisible(false);
-        negativaQ3.setVisible(false);
-        flechaIzq.setVisible(false);
-        flechaDer.setVisible(false);
         try {
             URL urlFont = getClass().getResource("/fonts/pristina.ttf");
             String urlFontConverted = urlFont.toString().replaceAll("%20", " ");
@@ -72,9 +63,6 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
             txtCargaQ2.setFont(pristinaFont);
             txtExponenteQ2.setFont(pristinaFont);
             txtDistanciaQ2.setFont(pristinaFont);
-            txtCargaQ3.setFont(pristinaFont);
-            txtDistanciaQ3.setFont(pristinaFont);
-            txtExponenteQ3.setFont(pristinaFont);
         } catch (FontFormatException | IOException ex) {
             System.out.println("No se pudo crear o cargar la font");
         }
@@ -112,21 +100,13 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         lblIrLinea = new javax.swing.JLabel();
         lblMenuFondo = new javax.swing.JLabel();
         txtCargaQ2 = new javax.swing.JTextField();
-        txtCargaQ3 = new javax.swing.JTextField();
         txtCargaQ1 = new javax.swing.JTextField();
-        txtDistanciaQ3 = new javax.swing.JTextField();
+        txtAlfa = new javax.swing.JTextField();
         txtDistanciaQ2 = new javax.swing.JTextField();
         txtDistanciaQ1 = new javax.swing.JTextField();
-        txtExponenteQ3 = new javax.swing.JTextField();
         txtExponenteQ2 = new javax.swing.JTextField();
         txtExponenteQ1 = new javax.swing.JTextField();
         lblCampo = new javax.swing.JLabel();
-        positivaQ1 = new javax.swing.JLabel();
-        negativaQ1 = new javax.swing.JLabel();
-        positivaQ2 = new javax.swing.JLabel();
-        negativaQ2 = new javax.swing.JLabel();
-        positivaQ3 = new javax.swing.JLabel();
-        negativaQ3 = new javax.swing.JLabel();
         flechaIzq = new javax.swing.JLabel();
         flechaDer = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
@@ -189,20 +169,17 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
         txtCargaQ2.setBorder(null);
+        txtCargaQ2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCargaQ2ActionPerformed(evt);
+            }
+        });
         txtCargaQ2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCargaQ2KeyReleased(evt);
             }
         });
         getContentPane().add(txtCargaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 130, 40));
-
-        txtCargaQ3.setBorder(null);
-        txtCargaQ3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCargaQ3KeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtCargaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 130, 40));
 
         txtCargaQ1.setBorder(null);
         txtCargaQ1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -212,13 +189,13 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         });
         getContentPane().add(txtCargaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 42, 130, 40));
 
-        txtDistanciaQ3.setBorder(null);
-        txtDistanciaQ3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAlfa.setBorder(null);
+        txtAlfa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDistanciaQ3KeyReleased(evt);
+                txtAlfaKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDistanciaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 310, 150, 40));
+        getContentPane().add(txtAlfa, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 90, 40));
 
         txtDistanciaQ2.setBorder(null);
         txtDistanciaQ2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -226,23 +203,20 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
                 txtDistanciaQ2KeyReleased(evt);
             }
         });
-        getContentPane().add(txtDistanciaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 150, 40));
+        getContentPane().add(txtDistanciaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 150, 40));
 
         txtDistanciaQ1.setBorder(null);
+        txtDistanciaQ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDistanciaQ1ActionPerformed(evt);
+            }
+        });
         txtDistanciaQ1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDistanciaQ1KeyReleased(evt);
             }
         });
-        getContentPane().add(txtDistanciaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 150, 40));
-
-        txtExponenteQ3.setBorder(null);
-        txtExponenteQ3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtExponenteQ3KeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtExponenteQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 120, 40, 40));
+        getContentPane().add(txtDistanciaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 150, 40));
 
         txtExponenteQ2.setBorder(null);
         txtExponenteQ2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -261,31 +235,13 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         getContentPane().add(txtExponenteQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
         getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
 
-        positivaQ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
-        getContentPane().add(positivaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, -1, -1));
-
-        negativaQ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
-        getContentPane().add(negativaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, -1, -1));
-
-        positivaQ2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
-        getContentPane().add(positivaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 237, -1, -1));
-
-        negativaQ2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
-        getContentPane().add(negativaQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 237, -1, -1));
-
-        positivaQ3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
-        getContentPane().add(positivaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 237, -1, -1));
-
-        negativaQ3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Negativa.png"))); // NOI18N
-        getContentPane().add(negativaQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 237, -1, -1));
-
         flechaIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaIzq.png"))); // NOI18N
-        getContentPane().add(flechaIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+        getContentPane().add(flechaIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
         flechaDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaDer.png"))); // NOI18N
-        getContentPane().add(flechaDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+        getContentPane().add(flechaDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/3Opcion1Seleccion.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2CargasSeleccion2.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -315,216 +271,7 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         }
     }
     
-    void actualizarCampo(){
-        double k = 9e9;
-        if(esNumero(txtCargaQ1.getText()) && esNumero(txtExponenteQ1.getText()) && esNumero(txtDistanciaQ1.getText())){
-            double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
-            double exponenteQ1 = Double.parseDouble(txtExponenteQ1.getText());
-            double cargaCompletaQ1 = cargaQ1 * Math.pow(10, exponenteQ1);
-            double distanciaQ1 = Double.parseDouble(txtDistanciaQ1.getText());
-            double campoQ1 = (k * Math.abs(cargaCompletaQ1)) / Math.pow(distanciaQ1, 2);
-            if(esNumero(txtCargaQ2.getText()) && esNumero(txtExponenteQ2.getText()) && esNumero(txtDistanciaQ2.getText())){
-                double cargaQ2 = Double.parseDouble(txtCargaQ2.getText());
-                double exponenteQ2 = Double.parseDouble(txtExponenteQ2.getText());
-                double cargaCompletaQ2 = cargaQ2 * Math.pow(10, exponenteQ2);
-                double distanciaQ2 = Double.parseDouble(txtDistanciaQ2.getText());
-                double campoQ2 = (k * Math.abs(cargaCompletaQ2)) / Math.pow(distanciaQ2, 2);
-                if(esNumero(txtCargaQ3.getText()) && esNumero(txtExponenteQ3.getText()) && esNumero(txtDistanciaQ3.getText())){
-                    double distanciaIncompletaQ3 = Double.parseDouble(txtDistanciaQ3.getText());
-                    double distanciaQ3 = distanciaQ2 + distanciaIncompletaQ3;
-                    if(esPositivo(distanciaQ1) && esPositivo(distanciaQ2) && esPositivo(distanciaQ3)){
-                        double cargaQ3 = Double.parseDouble(txtCargaQ3.getText());
-                        double exponenteQ3 = Double.parseDouble(txtExponenteQ3.getText());
-                        double cargaCompletaQ3 = cargaQ3 * Math.pow(10, exponenteQ3);
-                        double campoQ3 = (k * Math.abs(cargaCompletaQ3)) / Math.pow(distanciaQ3, 2);
-                        double campoResultante;
-                        if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0){
-                            campoResultante = (campoQ2 + campoQ3) - campoQ1;
-                            if((campoQ2 + campoQ3) > campoQ1){
-                                flechaIzq.setVisible(true);
-                                flechaDer.setVisible(false);
-                            }else if((campoQ2 + campoQ3) < campoQ1){
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(true);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 > 0){
-                            campoResultante = campoQ1 + campoQ2 + campoQ3;
-                            flechaIzq.setVisible(true);
-                            flechaDer.setVisible(false);
-                        }
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0){
-                            campoResultante = (campoQ1 + campoQ2) - campoQ3;
-                            if((campoQ1 + campoQ2) > campoQ3){
-                                flechaDer.setVisible(true);
-                                flechaIzq.setVisible(false);
-                            }else if((campoQ1 + campoQ2) < campoQ3){
-                                flechaDer.setVisible(false);
-                                flechaIzq.setVisible(true);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0){
-                            campoResultante = (campoQ1 + campoQ3) - campoQ2;
-                            if((campoQ1 + campoQ3) > campoQ2){
-                                flechaDer.setVisible(true);
-                                flechaIzq.setVisible(false);
-                            }else if((campoQ1 + campoQ3) < campoQ2){
-                                flechaDer.setVisible(false);
-                                flechaIzq.setVisible(true);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        else if(cargaCompletaQ1 > 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 < 0){
-                            campoResultante = campoQ1 + campoQ2 + campoQ3;
-                            flechaDer.setVisible(true);
-                            flechaIzq.setVisible(false);
-                        }
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 > 0 && cargaCompletaQ3 < 0){
-                            campoResultante = (campoQ1 + campoQ2) - campoQ3;
-                            if((campoQ1 + campoQ2) > campoQ3){
-                                flechaDer.setVisible(false);
-                                flechaIzq.setVisible(true);
-                            }else if((campoQ1 + campoQ2) < campoQ3){
-                                flechaDer.setVisible(true);
-                                flechaIzq.setVisible(false);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        else if(cargaCompletaQ1 < 0 && cargaCompletaQ2 < 0 && cargaCompletaQ3 > 0){
-                            campoResultante = (campoQ1 + campoQ3) - campoQ2;
-                            if((campoQ1 + campoQ3) > campoQ2){
-                                flechaDer.setVisible(false);
-                                flechaIzq.setVisible(true);
-                            }else if((campoQ1 + campoQ3) < campoQ2){
-                                flechaDer.setVisible(true);
-                                flechaIzq.setVisible(false);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        else{
-                            campoResultante = (campoQ2 + campoQ3) - campoQ1;
-                            if((campoQ2 + campoQ3) > campoQ1){
-                                flechaDer.setVisible(true);
-                                flechaIzq.setVisible(false);
-                            }else if((campoQ2 + campoQ3) < campoQ1){
-                                flechaDer.setVisible(false);
-                                flechaIzq.setVisible(true);
-                            }else{
-                                flechaIzq.setVisible(false);
-                                flechaDer.setVisible(false);
-                            }
-                        }
-                        campoResultante = Math.abs(campoResultante);
-                        DecimalFormat f = new DecimalFormat("0.##E0");
-                        lblCampo.setText(f.format(campoResultante));
-                    }
-                }
-            }
-            /*
-            if(cargaQ1 > 0){
-                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1CargaFondoPositivo.png"));
-                lblFondo.setIcon(icon);
-                return;
-            }
-            if(cargaQ1 < 0){
-                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1CargaFondoNegativo.png"));
-                lblFondo.setIcon(icon);
-                return;
-            }
-            ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1CargaFondo.png"));
-            lblFondo.setIcon(icon);
-            */
-        }
-    }
-    
-    void revisarExponente(JTextField jText){
-        if(jText.getText().equals("")){
-            jText.setBackground(new Color(0,0,0,0));
-            lblCampo.setText(null);
-            return;
-        }
-        if(esNumero(jText.getText())){
-            double exponente = Double.parseDouble(jText.getText());
-            if(exponente >= -12 && exponente <= 12){
-                actualizarCampo();
-                jText.setBackground(new Color(0,0,0,0));
-                return;
-            }
-        }
-        jText.setBackground(new Color(100,0,0,100));
-        lblCampo.setText(null);
-    }
-    
-    void revisarTexto(JTextField jText){
-        if(esNumero(jText.getText())){
-            actualizarCampo();
-            jText.setBackground(new Color(0,0,0,0));
-            return;
-        }
-        if(jText.getText().equals("")){
-            lblCampo.setText(null);
-            jText.setBackground(new Color(0,0,0,0));
-            return;
-        }
-        jText.setBackground(new Color(100,0,0,100));
-        lblCampo.setText(null);
-    }
-    
-    boolean esPositivo(double numero){
-        return numero > 0;
-    }
-    
-    void revisarTextoPositivo(JTextField jText){
-        if(esNumero(jText.getText())){
-            double valor = Double.parseDouble(jText.getText());
-            if(esPositivo(valor)){
-                actualizarCampo();
-                jText.setBackground(new Color(0,0,0,0));
-                return;
-            }
-        }
-        if(jText.getText().equals("")){
-            lblCampo.setText(null);
-            jText.setBackground(new Color(0,0,0,0));
-            return;
-        }
-        jText.setBackground(new Color(100,0,0,100));
-        lblCampo.setText(null);
-    }
-    
-    private void txtCargaQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ1KeyReleased
-        revisarTexto(txtCargaQ1);
-        if(esNumero(txtCargaQ1.getText())){
-            double carga = Double.parseDouble(txtCargaQ1.getText());
-            if(carga > 0){
-                positivaQ1.setVisible(true);
-                negativaQ1.setVisible(false);
-            }else if(carga < 0){
-                negativaQ1.setVisible(true);
-                positivaQ1.setVisible(false);
-            }else{
-                positivaQ1.setVisible(false);
-                negativaQ1.setVisible(false);
-            }
-        }else{
-            positivaQ1.setVisible(false);
-            negativaQ1.setVisible(false);
-        }
-    }//GEN-LAST:event_txtCargaQ1KeyReleased
-
-                private void mostrarMenu(){
+            private void mostrarMenu(){
         Timer cronometro = new Timer();
         TimerTask mostrarMenuTimer = new TimerTask(){
             @Override
@@ -570,70 +317,206 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
     }
     
+    void actualizarCampo(){
+        double k = 9e9;
+        if(esNumero(txtCargaQ1.getText()) && esNumero(txtExponenteQ1.getText()) && esNumero(txtDistanciaQ1.getText())){
+            double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
+            double exponenteQ1 = Double.parseDouble(txtExponenteQ1.getText());
+            double cargaCompletaQ1 = cargaQ1 * Math.pow(10, exponenteQ1);
+            double distanciaQ1 = Double.parseDouble(txtDistanciaQ1.getText());
+            double campoQ1 = (k * Math.abs(cargaCompletaQ1)) / Math.pow(distanciaQ1, 2);
+            if(esNumero(txtCargaQ2.getText()) && esNumero(txtExponenteQ2.getText()) && esNumero(txtDistanciaQ2.getText())){
+                double cargaQ2 = Double.parseDouble(txtCargaQ2.getText());
+                double exponenteQ2 = Double.parseDouble(txtExponenteQ2.getText());
+                double cargaCompletaQ2 = cargaQ2 * Math.pow(10, exponenteQ2);
+                double distanciaQ2 = Double.parseDouble(txtDistanciaQ2.getText());
+                double campoQ2 = (k * Math.abs(cargaCompletaQ2)) / Math.pow(distanciaQ2, 2);
+                    if(esPositivo(distanciaQ1) && esPositivo(distanciaQ2)){
+                        if(esNumero(txtAlfa.getText())){
+                            double alfa = Double.parseDouble(txtAlfa.getText());
+                            if(esAnguloNoRecto(alfa)){
+                                double campoResultante = 0;
+                                if(cargaCompletaQ1 == 0 || cargaCompletaQ2 == 0){
+                                    lblCampo.setText(null);
+                                    return;
+                                }
+                                if(campoResultante == 0){
+                                    flechaIzq.setVisible(false);
+                                    flechaDer.setVisible(false);
+                                }
+                                campoResultante = Math.abs(campoResultante);
+                                DecimalFormat f = new DecimalFormat("0.##E0");
+                                lblCampo.setText(f.format(campoResultante));
+                            }
+                        }
+                }
+            }
+        }
+            if(esNumero(txtCargaQ1.getText()) && !esNumero(txtCargaQ2.getText())){
+                double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
+                if(cargaQ1 > 0 && txtCargaQ2.getText().equals("")){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Pos2.png"));
+                    lblFondo.setIcon(icon);
+                }
+                if(cargaQ1 < 0 && txtCargaQ2.getText().equals("")){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Neg2.png"));
+                    lblFondo.setIcon(icon);
+                }      
+            }
+            if(esNumero(txtCargaQ2.getText()) && !esNumero(txtCargaQ1.getText())){
+                double cargaQ2 = Double.parseDouble(txtCargaQ2.getText());
+                if(cargaQ2 > 0 && txtCargaQ1.getText().equals("")){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion2Pos2.png"));
+                    lblFondo.setIcon(icon);
+                }
+                if(cargaQ2 < 0 && txtCargaQ1.getText().equals("")){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion2Neg2.png"));
+                    lblFondo.setIcon(icon);
+                }
+            }
+            if(esNumero(txtCargaQ1.getText()) && esNumero(txtCargaQ2.getText())){
+                double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
+                double cargaQ2 = Double.parseDouble(txtCargaQ2.getText());
+                if(cargaQ1 > 0 && cargaQ2 > 0){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccionAmbasPos2.png"));
+                    lblFondo.setIcon(icon);
+                }
+                if(cargaQ1 < 0 && cargaQ2 < 0){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccionAmbasNeg2.png"));
+                    lblFondo.setIcon(icon);
+                }
+                if(cargaQ1 > 0 && cargaQ2 < 0){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Pos2Neg2.png"));
+                    lblFondo.setIcon(icon);
+                }
+                if(cargaQ1 < 0 && cargaQ2 > 0){
+                    ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Neg2Pos2.png"));
+                    lblFondo.setIcon(icon);
+                }
+            }
+    }
+    
+    boolean esAnguloNoRecto(double num){
+        return num > 0 && num < 90;
+    }
+    
+    void revisarExponente(JTextField jText){
+        if(jText.getText().equals("")){
+            jText.setBackground(new Color(0,0,0,0));
+            lblCampo.setText(null);
+            return;
+        }
+        if(esNumero(jText.getText())){
+            double exponente = Double.parseDouble(jText.getText());
+            if(exponente >= -12 && exponente <= 12){
+                actualizarCampo();
+                jText.setBackground(new Color(0,0,0,0));
+                return;
+            }
+        }
+        jText.setBackground(new Color(100,0,0,100));
+        lblCampo.setText(null);
+    }
+    
+    void revisarTexto(JTextField jText){
+        if(!txtCargaQ1.getText().equals("") || !txtCargaQ2.getText().equals("")){
+            if(esNumero(jText.getText())){
+                double carga = Double.parseDouble(jText.getText());
+                if(carga != 0){
+                    actualizarCampo();
+                    jText.setBackground(new Color(0,0,0,0));
+                }else{
+                    lblCampo.setText(null);
+                    jText.setBackground(new Color(100,0,0,100));
+                }
+                return;
+            }
+            if(jText.getText().equals("")){
+                lblCampo.setText(null);
+                if(!esNumero(txtCargaQ1.getText()) && esNumero(txtCargaQ2.getText())){
+                    double cargaQ2 = Double.parseDouble(txtCargaQ2.getText());
+                    if(cargaQ2 > 0){
+                        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion2Pos2.png"));
+                        lblFondo.setIcon(icon);
+                    }else{
+                        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion2Neg2.png"));
+                        lblFondo.setIcon(icon);
+                    }
+                }
+                if(esNumero(txtCargaQ1.getText()) && !esNumero(txtCargaQ2.getText())){
+                    double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
+                    if(cargaQ1 > 0){
+                        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Pos2.png"));
+                        lblFondo.setIcon(icon);
+                    }else{
+                        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion1Neg2.png"));
+                        lblFondo.setIcon(icon);
+                    }
+                }
+                jText.setBackground(new Color(0,0,0,0));
+                return;
+            }
+            jText.setBackground(new Color(100,0,0,100));
+            lblCampo.setText(null);
+            return;
+        }
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasSeleccion2.png"));
+        lblFondo.setIcon(icon);
+    }
+    
+    boolean esPositivo(double numero){
+        return numero > 0;
+    }
+    
+    void revisarTextoPositivo(JTextField jText){
+        if(esNumero(jText.getText())){
+            double valor = Double.parseDouble(jText.getText());
+            if(esPositivo(valor)){
+                actualizarCampo();
+                jText.setBackground(new Color(0,0,0,0));
+                return;
+            }
+        }
+        if(jText.getText().equals("")){
+            lblCampo.setText(null);
+            jText.setBackground(new Color(0,0,0,0));
+            return;
+        }
+        jText.setBackground(new Color(100,0,0,100));
+        lblCampo.setText(null);
+    }
+    
+    private void txtCargaQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ1KeyReleased
+        revisarTexto(txtCargaQ1);
+    }//GEN-LAST:event_txtCargaQ1KeyReleased
+
     private void txtDistanciaQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistanciaQ1KeyReleased
         revisarTextoPositivo(txtDistanciaQ1);
-        
     }//GEN-LAST:event_txtDistanciaQ1KeyReleased
 
     private void txtExponenteQ1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExponenteQ1KeyReleased
         revisarExponente(txtExponenteQ1);
     }//GEN-LAST:event_txtExponenteQ1KeyReleased
 
-    private void txtCargaQ3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ3KeyReleased
-        revisarTexto(txtCargaQ3);
-        if(esNumero(txtCargaQ3.getText())){
-            double carga = Double.parseDouble(txtCargaQ3.getText());
-            if(carga > 0){
-                positivaQ3.setVisible(true);
-                negativaQ3.setVisible(false);
-            }else if(carga < 0){
-                negativaQ3.setVisible(true);
-                positivaQ3.setVisible(false);
-            }else{
-                positivaQ3.setVisible(false);
-                negativaQ3.setVisible(false);
-            }
-        }else{
-            positivaQ3.setVisible(false);
-            negativaQ3.setVisible(false);
-        }
-    }//GEN-LAST:event_txtCargaQ3KeyReleased
-
     private void txtCargaQ2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargaQ2KeyReleased
         revisarTexto(txtCargaQ2);
-        if(esNumero(txtCargaQ2.getText())){
-            double carga = Double.parseDouble(txtCargaQ2.getText());
-            if(carga > 0){
-                positivaQ2.setVisible(true);
-                negativaQ2.setVisible(false);
-            }else if(carga < 0){
-                negativaQ2.setVisible(true);
-                positivaQ2.setVisible(false);
-            }else{
-                positivaQ2.setVisible(false);
-                negativaQ2.setVisible(false);
-            }
-        }else{
-            positivaQ2.setVisible(false);
-            negativaQ2.setVisible(false);
-        }
     }//GEN-LAST:event_txtCargaQ2KeyReleased
 
     private void txtDistanciaQ2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistanciaQ2KeyReleased
         revisarTextoPositivo(txtDistanciaQ2);
     }//GEN-LAST:event_txtDistanciaQ2KeyReleased
 
-    private void txtDistanciaQ3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistanciaQ3KeyReleased
-        revisarTextoPositivo(txtDistanciaQ3);
-    }//GEN-LAST:event_txtDistanciaQ3KeyReleased
-
     private void txtExponenteQ2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExponenteQ2KeyReleased
         revisarExponente(txtExponenteQ2);
     }//GEN-LAST:event_txtExponenteQ2KeyReleased
 
-    private void txtExponenteQ3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExponenteQ3KeyReleased
-       revisarExponente(txtExponenteQ3);
-    }//GEN-LAST:event_txtExponenteQ3KeyReleased
+    private void txtDistanciaQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDistanciaQ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDistanciaQ1ActionPerformed
+
+    private void txtCargaQ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCargaQ2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCargaQ2ActionPerformed
 
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
@@ -685,6 +568,10 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         new FrmOpcionesLineas().setVisible(true);
     }//GEN-LAST:event_lblIrLineaMouseClicked
 
+    private void txtAlfaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlfaKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlfaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -702,14 +589,26 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm3CargaOpcion0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm2CargaOpcion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm3CargaOpcion0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm2CargaOpcion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm3CargaOpcion0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm2CargaOpcion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm3CargaOpcion0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm2CargaOpcion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -718,7 +617,7 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm3CargaOpcion0().setVisible(true);
+                new Frm2CargaOpcion2().setVisible(true);
             }
         });
     }
@@ -737,20 +636,12 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
     private javax.swing.JLabel lbtnIrPlacas;
     private javax.swing.JLabel lbtnSalir;
     private javax.swing.JLabel lbtnVolverAtras;
-    private javax.swing.JLabel negativaQ1;
-    private javax.swing.JLabel negativaQ2;
-    private javax.swing.JLabel negativaQ3;
-    private javax.swing.JLabel positivaQ1;
-    private javax.swing.JLabel positivaQ2;
-    private javax.swing.JLabel positivaQ3;
+    private javax.swing.JTextField txtAlfa;
     private javax.swing.JTextField txtCargaQ1;
     private javax.swing.JTextField txtCargaQ2;
-    private javax.swing.JTextField txtCargaQ3;
     private javax.swing.JTextField txtDistanciaQ1;
     private javax.swing.JTextField txtDistanciaQ2;
-    private javax.swing.JTextField txtDistanciaQ3;
     private javax.swing.JTextField txtExponenteQ1;
     private javax.swing.JTextField txtExponenteQ2;
-    private javax.swing.JTextField txtExponenteQ3;
     // End of variables declaration//GEN-END:variables
 }

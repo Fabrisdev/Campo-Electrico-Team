@@ -71,6 +71,7 @@ public class FrmMenu extends javax.swing.JFrame {
         lblBtnPlaca = new javax.swing.JLabel();
         lblBtnCreditos = new javax.swing.JLabel();
         lblBtnLineaCarga = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblFondoMenu = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -146,6 +147,21 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblBtnLineaCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 470, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/libro-abierto.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 70, -1));
 
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Weaaaaa.png"))); // NOI18N
         getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
@@ -256,6 +272,21 @@ public class FrmMenu extends javax.swing.JFrame {
         new FrmOpcionesLineas().setVisible(true);
     }//GEN-LAST:event_lblBtnLineaCargaMouseClicked
 
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/libro-abierto-blanco.png"));
+        jLabel1.setIcon(icon);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/libro-abierto.png"));
+        jLabel1.setIcon(icon);
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        setVisible(false);
+        new FrmEnciclopedia().setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -293,6 +324,7 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelPantallaNegra;
     private javax.swing.JLabel lblBtnCarga;
     private javax.swing.JLabel lblBtnCreditos;

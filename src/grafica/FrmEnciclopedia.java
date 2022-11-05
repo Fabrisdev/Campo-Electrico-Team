@@ -10,15 +10,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
 
-public class Frm2CargaOpciones extends javax.swing.JFrame {
+/**
+ *
+ * @author Fabri
+ */
+public class FrmEnciclopedia extends javax.swing.JFrame {
 
-    private int posicionSeleccionada;
-    private boolean menuAbierto;
+    /**
+     * Creates new form FrmOpcionesCargas
+     */
+     private boolean menuAbierto;
     private boolean menuMoviendose;
     
-    public Frm2CargaOpciones() {
+    public FrmEnciclopedia() {
         initComponents();
-        setTitle("PR: Dos cargas opciones | Equipo Dinamita");
+        setTitle("PR: Enciclopedia | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
@@ -38,14 +44,15 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         lbtnAbrirMenu = new logica.JLabelRotar();
         jPanelMenu = new javax.swing.JPanel();
         lbtnVolverAtras = new javax.swing.JLabel();
-        lbtnIrPlacas = new javax.swing.JLabel();
+        lbtnIrCargas = new javax.swing.JLabel();
         lbtnIrCreditos = new javax.swing.JLabel();
         lbtnSalir = new javax.swing.JLabel();
-        lblIrLinea = new javax.swing.JLabel();
+        lbtnIrLinea = new javax.swing.JLabel();
         lblMenuFondo = new javax.swing.JLabel();
-        lblBtnSiguiente = new javax.swing.JLabel();
-        lblBtnAtras = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblLeerCargaElectrica = new javax.swing.JLabel();
+        lblLeerClasificacion = new javax.swing.JLabel();
+        lblLeerLey = new javax.swing.JLabel();
+        lblLeerEcuacionesCampoElectrico = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -69,14 +76,14 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
                 lbtnVolverAtrasMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 50));
+        jPanelMenu.add(lbtnVolverAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 50));
 
-        lbtnIrPlacas.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbtnIrCargas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbtnIrPlacasMouseClicked(evt);
+                lbtnIrCargasMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lbtnIrPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 400, 70));
+        jPanelMenu.add(lbtnIrCargas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 400, 60));
 
         lbtnIrCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -92,41 +99,48 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         });
         jPanelMenu.add(lbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 400, 60));
 
-        lblIrLinea.setText("jLabel1");
-        lblIrLinea.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbtnIrLinea.setText("jLabel1");
+        lbtnIrLinea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblIrLineaMouseClicked(evt);
+                lbtnIrLineaMouseClicked(evt);
             }
         });
-        jPanelMenu.add(lblIrLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 400, 50));
+        jPanelMenu.add(lbtnIrLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 400, 60));
 
-        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizableCarga.png"))); // NOI18N
+        lblMenuFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/menuDeslizablePlaca.png"))); // NOI18N
         jPanelMenu.add(lblMenuFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
-        lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLeerCargaElectrica.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnSiguienteMouseClicked(evt);
+                lblLeerCargaElectricaMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        getContentPane().add(lblLeerCargaElectrica, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 420, 30));
 
-        lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLeerClasificacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnAtrasMouseClicked(evt);
+                lblLeerClasificacionMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
+        getContentPane().add(lblLeerClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 310, 60));
 
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLeerLey.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lblLeerLeyMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 800, 510));
+        getContentPane().add(lblLeerLey, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 240, 40));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2CargasOpcion0.png"))); // NOI18N
+        lblLeerEcuacionesCampoElectrico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLeerEcuacionesCampoElectricoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblLeerEcuacionesCampoElectrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 400, 30));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/EnciclopediaIndice.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -147,7 +161,8 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-                private void mostrarMenu(){
+     
+        private void mostrarMenu(){
         Timer cronometro = new Timer();
         TimerTask mostrarMenuTimer = new TimerTask(){
             @Override
@@ -193,38 +208,6 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
     }
     
-    private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-        if(posicionSeleccionada >= 0 && posicionSeleccionada < 1)
-            posicionSeleccionada += 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasOpcion"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnSiguienteMouseClicked
-
-    private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-        if(posicionSeleccionada > 0 && posicionSeleccionada <= 1)
-            posicionSeleccionada = posicionSeleccionada - 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasOpcion"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnAtrasMouseClicked
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        setVisible(false);
-        switch(posicionSeleccionada){
-            case 0:
-                new Frm2CargaOpcion0().setVisible(true);
-                break;
-            case 1:
-                new Frm2CargaOpcion1().setVisible(true);
-                break;
-            case 2:
-                new Frm2CargaOpcion2().setVisible(true);
-                break;
-            case 3:
-                //new Frm2CargaOpcion3().setVisible(true);
-                break;
-        }
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
             if(menuAbierto){
@@ -242,10 +225,10 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         new FrmMenu().setVisible(true);
     }//GEN-LAST:event_lbtnVolverAtrasMouseClicked
 
-    private void lbtnIrPlacasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrPlacasMouseClicked
+    private void lbtnIrCargasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCargasMouseClicked
         setVisible(false);
-        new FrmOpcionesPlacas().setVisible(true);
-    }//GEN-LAST:event_lbtnIrPlacasMouseClicked
+        new FrmOpcionesCargas().setVisible(true);
+    }//GEN-LAST:event_lbtnIrCargasMouseClicked
 
     private void lbtnIrCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrCreditosMouseClicked
         setVisible(false);
@@ -270,12 +253,32 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         cronometro.scheduleAtFixedRate(ajustarOpacidad, 0, 50);
     }//GEN-LAST:event_lbtnSalirMouseClicked
 
-    private void lblIrLineaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIrLineaMouseClicked
+    private void lbtnIrLineaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnIrLineaMouseClicked
         setVisible(false);
         new FrmOpcionesLineas().setVisible(true);
-    }//GEN-LAST:event_lblIrLineaMouseClicked
+    }//GEN-LAST:event_lbtnIrLineaMouseClicked
 
-    
+    private void lblLeerCargaElectricaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerCargaElectricaMouseClicked
+        setVisible(false);
+        new FrmLeerCargaElectrica().setVisible(true);
+    }//GEN-LAST:event_lblLeerCargaElectricaMouseClicked
+
+    private void lblLeerEcuacionesCampoElectricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerEcuacionesCampoElectricoMouseClicked
+        setVisible(false);
+        new FrmLeerEcucacionesCampoElectrico().setVisible(true);
+    }//GEN-LAST:event_lblLeerEcuacionesCampoElectricoMouseClicked
+
+    private void lblLeerLeyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerLeyMouseClicked
+        setVisible(false);
+        new FrmLeerLey().setVisible(true);
+    }//GEN-LAST:event_lblLeerLeyMouseClicked
+
+    private void lblLeerClasificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerClasificacionMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+        new FrmLeerClas().setVisible(true);
+    }//GEN-LAST:event_lblLeerClasificacionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -293,42 +296,14 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnciclopedia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnciclopedia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnciclopedia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnciclopedia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -337,23 +312,24 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm2CargaOpciones().setVisible(true);
+                new FrmEnciclopedia().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPantallaNegra;
-    private javax.swing.JLabel lblBtnAtras;
-    private javax.swing.JLabel lblBtnSiguiente;
     private javax.swing.JLabel lblFondo;
-    private javax.swing.JLabel lblIrLinea;
+    private javax.swing.JLabel lblLeerCargaElectrica;
+    private javax.swing.JLabel lblLeerClasificacion;
+    private javax.swing.JLabel lblLeerEcuacionesCampoElectrico;
+    private javax.swing.JLabel lblLeerLey;
     private javax.swing.JLabel lblMenuFondo;
     private logica.JLabelRotar lbtnAbrirMenu;
+    private javax.swing.JLabel lbtnIrCargas;
     private javax.swing.JLabel lbtnIrCreditos;
-    private javax.swing.JLabel lbtnIrPlacas;
+    private javax.swing.JLabel lbtnIrLinea;
     private javax.swing.JLabel lbtnSalir;
     private javax.swing.JLabel lbtnVolverAtras;
     // End of variables declaration//GEN-END:variables

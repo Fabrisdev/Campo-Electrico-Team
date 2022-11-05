@@ -10,14 +10,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
 
-public class Frm2CargaOpciones extends javax.swing.JFrame {
+public class FrmLeerCargaElectrica extends javax.swing.JFrame {
 
     private int posicionSeleccionada;
     private boolean menuAbierto;
     private boolean menuMoviendose;
     
-    public Frm2CargaOpciones() {
+    public FrmLeerCargaElectrica() {
         initComponents();
+        posicionSeleccionada = 1;
         setTitle("PR: Dos cargas opciones | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
@@ -43,8 +44,6 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         lbtnSalir = new javax.swing.JLabel();
         lblIrLinea = new javax.swing.JLabel();
         lblMenuFondo = new javax.swing.JLabel();
-        lblBtnSiguiente = new javax.swing.JLabel();
-        lblBtnAtras = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
@@ -105,28 +104,10 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
-        lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnSiguienteMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/negro.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, -4, 70, 60));
 
-        lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnAtrasMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
-
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 800, 510));
-
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2CargasOpcion0.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Coulomb.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -193,38 +174,6 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
     }
     
-    private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-        if(posicionSeleccionada >= 0 && posicionSeleccionada < 1)
-            posicionSeleccionada += 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasOpcion"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnSiguienteMouseClicked
-
-    private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-        if(posicionSeleccionada > 0 && posicionSeleccionada <= 1)
-            posicionSeleccionada = posicionSeleccionada - 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2CargasOpcion"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnAtrasMouseClicked
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        setVisible(false);
-        switch(posicionSeleccionada){
-            case 0:
-                new Frm2CargaOpcion0().setVisible(true);
-                break;
-            case 1:
-                new Frm2CargaOpcion1().setVisible(true);
-                break;
-            case 2:
-                new Frm2CargaOpcion2().setVisible(true);
-                break;
-            case 3:
-                //new Frm2CargaOpcion3().setVisible(true);
-                break;
-        }
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
             if(menuAbierto){
@@ -293,14 +242,46 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLeerCargaElectrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLeerCargaElectrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLeerCargaElectrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm2CargaOpciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLeerCargaElectrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -337,7 +318,7 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm2CargaOpciones().setVisible(true);
+                new FrmLeerCargaElectrica().setVisible(true);
             }
         });
     }
@@ -346,8 +327,6 @@ public class Frm2CargaOpciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPantallaNegra;
-    private javax.swing.JLabel lblBtnAtras;
-    private javax.swing.JLabel lblBtnSiguiente;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIrLinea;
     private javax.swing.JLabel lblMenuFondo;
