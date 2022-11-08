@@ -7,7 +7,7 @@ package grafica;
 import java.awt.Color;
 import java.net.URL;
 import java.util.Timer;
-import java.util.TimerTask;
+import java.util.TimerTask; 
 import javax.swing.ImageIcon;
 
 /**
@@ -32,6 +32,7 @@ public class Frm3CargaOpciones extends javax.swing.JFrame {
         this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
         setLocationRelativeTo(null);
+        lblBtnAtras.setVisible(false);
     }
 
     /**
@@ -113,19 +114,21 @@ public class Frm3CargaOpciones extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
+        lblBtnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnSiguienteArreglado.png"))); // NOI18N
         lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnSiguienteMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(902, 240, 90, 90));
 
+        lblBtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnAtrasArreglado.png"))); // NOI18N
         lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnAtrasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
+        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 224, 80, 120));
 
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -134,7 +137,7 @@ public class Frm3CargaOpciones extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 800, 510));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/3CargasOpcion1.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/3CargasOpcion2.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -156,26 +159,63 @@ public class Frm3CargaOpciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion2.png"));
-        lblFondo.setIcon(icon);
-        posicionSeleccionada = 1;
+        if(posicionSeleccionada < 3)
+            posicionSeleccionada++;
+        actualizarImagen();
     }//GEN-LAST:event_lblBtnSiguienteMouseClicked
 
     private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion1.png"));
-        lblFondo.setIcon(icon);
-        posicionSeleccionada = 0;
+        if(posicionSeleccionada > 0)
+            posicionSeleccionada = posicionSeleccionada - 1;
+        actualizarImagen();
     }//GEN-LAST:event_lblBtnAtrasMouseClicked
 
+    void actualizarImagen(){
+        switch(posicionSeleccionada){
+            case 0:
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion2.png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(false);
+                lblBtnSiguiente.setVisible(true);
+                break;
+            case 1:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion1.png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(true);
+                lblBtnSiguiente.setVisible(true);
+                break;
+            case 2:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion3.png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(true);
+                lblBtnSiguiente.setVisible(true);
+                break;
+            case 3:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/3CargasOpcion4.png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(true);
+                lblBtnSiguiente.setVisible(false);
+                break;
+        }
+    }
+    
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         switch(posicionSeleccionada){
             case 0:
                 setVisible(false);
-                new Frm3CargaOpcion0().setVisible(true);
+                new Frm3CargaOpcion1().setVisible(true);
                 break;
             case 1:
                 setVisible(false);
-                new Frm3CargaOpcion1().setVisible(true);
+                new Frm3CargaOpcion0().setVisible(true);
+                break;
+            case 2:
+                setVisible(false);
+                new Frm3CargaOpcion2().setVisible(true);
+                break;
+            case 3:
+                setVisible(false);
+                new Frm3CargaOpcion3().setVisible(true);
                 break;
         }
     }//GEN-LAST:event_jLabel1MouseClicked

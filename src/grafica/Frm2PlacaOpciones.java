@@ -24,15 +24,20 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
     private boolean menuMoviendose;
     
     private int posicionSeleccionada;
+    private String medidaSeleccionada;
     
     public Frm2PlacaOpciones() {
         initComponents();
+        lblBtnAtras.setVisible(false);
         setTitle("PR: Dos placas opciones | Equipo Dinamita");
         URL icono = getClass().getResource("/grafica/img/Logo_Proyecto.png");
         ImageIcon imagenIcono = new ImageIcon(icono);
         this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
         setLocationRelativeTo(null);
+        lblAreaHover.setVisible(false);
+        lblLargoAnchoHover.setVisible(false);
+        medidaSeleccionada = "Area";
     }
 
     /**
@@ -55,6 +60,10 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
         lblBtnSiguiente = new javax.swing.JLabel();
         lblBtnAtras = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblLargoAnchoHover = new javax.swing.JLabel();
+        lblAreaHover = new javax.swing.JLabel();
+        lblLargoAnchoText = new javax.swing.JLabel();
+        lblAreaText = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -67,7 +76,7 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
                 lbtnAbrirMenuMouseClicked(evt);
             }
         });
-        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 60, 60));
+        getContentPane().add(lbtnAbrirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
         jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
         jPanelMenu.setFocusable(false);
@@ -114,28 +123,62 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
+        lblBtnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnSiguienteArreglado.png"))); // NOI18N
         lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnSiguienteMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 240, 80, 100));
 
+        lblBtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnAtrasArreglado.png"))); // NOI18N
         lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnAtrasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
+        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 90, 100));
 
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 800, 510));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 760, 420));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2PlacasOpcion0.png"))); // NOI18N
+        lblLargoAnchoHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaVerde.png"))); // NOI18N
+        getContentPane().add(lblLargoAnchoHover, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 130, 50));
+
+        lblAreaHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaVerde.png"))); // NOI18N
+        getContentPane().add(lblAreaHover, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 130, 50));
+
+        lblLargoAnchoText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLargoAnchoTextMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLargoAnchoTextMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLargoAnchoTextMouseExited(evt);
+            }
+        });
+        getContentPane().add(lblLargoAnchoText, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 280, 40));
+
+        lblAreaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAreaTextMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAreaTextMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAreaTextMouseExited(evt);
+            }
+        });
+        getContentPane().add(lblAreaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 280, 40));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2PlacasOpcion0Area.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -157,18 +200,43 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion1.png"));
-        lblFondo.setIcon(icon);
-        posicionSeleccionada = 1;
+        if(posicionSeleccionada < 2){
+            posicionSeleccionada++;
+        }
+        actualizarImagen();
     }//GEN-LAST:event_lblBtnSiguienteMouseClicked
 
     private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion0.png"));
-        lblFondo.setIcon(icon);
-        posicionSeleccionada = 0;
+        if(posicionSeleccionada > 0){
+            posicionSeleccionada = posicionSeleccionada - 1;
+        }
+        actualizarImagen();
     }//GEN-LAST:event_lblBtnAtrasMouseClicked
 
-                private void mostrarMenu(){
+    void actualizarImagen(){
+        switch(posicionSeleccionada){
+            case 0:
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion0"+medidaSeleccionada+".png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(false);
+                lblBtnSiguiente.setVisible(true);
+                break;
+            case 1: 
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion1"+medidaSeleccionada+".png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(true);
+                lblBtnSiguiente.setVisible(true);
+                break;
+            case 2:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion2"+medidaSeleccionada+".png"));
+                lblFondo.setIcon(icon);
+                lblBtnAtras.setVisible(true);
+                lblBtnSiguiente.setVisible(false);
+                break;
+        }
+    }
+    
+    private void mostrarMenu(){
         Timer cronometro = new Timer();
         TimerTask mostrarMenuTimer = new TimerTask(){
             @Override
@@ -215,15 +283,36 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
     }
     
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        switch(posicionSeleccionada){
-            case 0:
-                setVisible(false);
-                new Frm2PlacaOpcion0().setVisible(true);
-                break;
-            case 1:
-                setVisible(false);
-                new Frm2PlacaOpcion1().setVisible(true);
-                break;
+        if(medidaSeleccionada.equals("Area")){
+            switch(posicionSeleccionada){
+                case 0:
+                    setVisible(false);
+                    new Frm2PlacaOpcion1().setVisible(true);
+                    break;
+                case 1:
+                    setVisible(false);
+                    new Frm2PlacaOpcion0().setVisible(true);
+                    break;
+                case 2:
+                    setVisible(false);
+                    new Frm2PlacaOpcion2().setVisible(true);
+                    break;
+            }
+        }else{
+            switch(posicionSeleccionada){
+                case 0:
+                    setVisible(false);
+                    new Frm2PlacaOpcion1LargoAncho().setVisible(true);
+                    break;
+                case 1:
+                    setVisible(false);
+                    new Frm2PlacaOpcion0LargoAncho().setVisible(true);
+                    break;
+                case 2:
+                    setVisible(false);
+                    new Frm2PlacaOpcion2LargoAncho().setVisible(true);
+                    break;
+            }
         }
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -276,6 +365,62 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
         setVisible(false);
         new FrmOpcionesLineas().setVisible(true);
     }//GEN-LAST:event_lbtnIrLineaMouseClicked
+
+    private void lblLargoAnchoTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLargoAnchoTextMouseEntered
+        lblLargoAnchoHover.setVisible(true);
+        lblAreaHover.setVisible(false);
+    }//GEN-LAST:event_lblLargoAnchoTextMouseEntered
+
+    private void lblLargoAnchoTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLargoAnchoTextMouseExited
+        lblLargoAnchoHover.setVisible(false);
+        lblAreaHover.setVisible(false);
+    }//GEN-LAST:event_lblLargoAnchoTextMouseExited
+
+    private void lblAreaTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAreaTextMouseEntered
+        lblLargoAnchoHover.setVisible(false);
+        lblAreaHover.setVisible(true);
+    }//GEN-LAST:event_lblAreaTextMouseEntered
+
+    private void lblAreaTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAreaTextMouseExited
+        lblLargoAnchoHover.setVisible(false);
+        lblAreaHover.setVisible(false);
+    }//GEN-LAST:event_lblAreaTextMouseExited
+
+    private void lblLargoAnchoTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLargoAnchoTextMouseClicked
+        switch(posicionSeleccionada){
+            case 0:
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion0LargoAncho.png"));
+                lblFondo.setIcon(icon);
+                break;
+            case 1:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion1LargoAncho.png"));
+                lblFondo.setIcon(icon);
+                break;
+            case 2:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion2LargoAncho.png"));
+                lblFondo.setIcon(icon);
+                break;
+        }
+        medidaSeleccionada = "LargoAncho";
+    }//GEN-LAST:event_lblLargoAnchoTextMouseClicked
+
+    private void lblAreaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAreaTextMouseClicked
+        switch(posicionSeleccionada){
+            case 0:
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion0Area.png"));
+                lblFondo.setIcon(icon);
+                break;
+            case 1:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion1Area.png"));
+                lblFondo.setIcon(icon);
+                break;
+            case 2:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2PlacasOpcion2Area.png"));
+                lblFondo.setIcon(icon);
+                break;
+        }
+        medidaSeleccionada = "Area";
+    }//GEN-LAST:event_lblAreaTextMouseClicked
 
     
     /**
@@ -348,9 +493,13 @@ public class Frm2PlacaOpciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPantallaNegra;
+    private javax.swing.JLabel lblAreaHover;
+    private javax.swing.JLabel lblAreaText;
     private javax.swing.JLabel lblBtnAtras;
     private javax.swing.JLabel lblBtnSiguiente;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblLargoAnchoHover;
+    private javax.swing.JLabel lblLargoAnchoText;
     private javax.swing.JLabel lblMenuFondo;
     private logica.JLabelRotar lbtnAbrirMenu;
     private javax.swing.JLabel lbtnIrCargas;

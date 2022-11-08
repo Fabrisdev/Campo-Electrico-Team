@@ -119,7 +119,7 @@ public class FrmLeerClas extends javax.swing.JFrame {
         });
         getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Clasificacion.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/EnciclopediaCEM.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);

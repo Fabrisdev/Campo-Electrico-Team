@@ -225,7 +225,7 @@ public class Frm2PlacaOpcion1 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtExponenteQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
+        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 190, 50));
 
         flechaIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/FlechaIzq.png"))); // NOI18N
         getContentPane().add(flechaIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
@@ -367,8 +367,10 @@ public class Frm2PlacaOpcion1 extends javax.swing.JFrame {
                             flechaDer.setVisible(false);
                         }
                         campoResultante = Math.abs(campoResultante);
-                        DecimalFormat f = new DecimalFormat("0.##E0");
-                        lblCampo.setText(f.format(campoResultante));
+                                DecimalFormat f = new DecimalFormat("0.##E0");
+                                String campoFormatoCientifico = f.format(campoResultante);
+                                String campoFormateado = campoFormatoCientifico.replace("E", "x10^");
+                                lblCampo.setText(campoFormateado);
                 }
             }
         }

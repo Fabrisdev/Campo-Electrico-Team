@@ -191,7 +191,7 @@ public class Frm1Linea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtExponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
+        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 190, 50));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/1LineaSeleccion.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
@@ -241,8 +241,11 @@ public class Frm1Linea extends javax.swing.JFrame {
                                 double pi = 3.14;
                                 double e0 = 8.8e-12;
                                 double campoResultante = Math.abs(lambda / (2 * pi * e0 * distancia));
+                                campoResultante = Math.abs(campoResultante);
                                 DecimalFormat f = new DecimalFormat("0.##E0");
-                                lblCampo.setText(String.valueOf(f.format(campoResultante)));
+                                String campoFormatoCientifico = f.format(campoResultante);
+                                String campoFormateado = campoFormatoCientifico.replace("E", "x10^");
+                                lblCampo.setText(campoFormateado);
                             }
                         }
                     }else{

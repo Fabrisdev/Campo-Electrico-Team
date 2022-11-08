@@ -147,7 +147,7 @@
     <Component class="javax.swing.JLabel" name="lblFondo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/grafica/img/Clasificacion.png"/>
+          <Image iconType="3" name="/grafica/img/EnciclopediaCEM.png"/>
         </Property>
       </Properties>
       <Constraints>

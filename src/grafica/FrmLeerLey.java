@@ -44,8 +44,7 @@ public class FrmLeerLey extends javax.swing.JFrame {
         lbtnSalir = new javax.swing.JLabel();
         lblIrLinea = new javax.swing.JLabel();
         lblMenuFondo = new javax.swing.JLabel();
-        lblBtnSiguiente = new javax.swing.JLabel();
-        lblBtnAtras = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -105,21 +104,10 @@ public class FrmLeerLey extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
-        lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnSiguienteMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/negro.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, -4, 70, 60));
 
-        lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBtnAtrasMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
-
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/CargaElectrica1.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Coulomb.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -186,20 +174,6 @@ public class FrmLeerLey extends javax.swing.JFrame {
         cronometro.scheduleAtFixedRate(mostrarMenuTimer, 0, 8);
     }
     
-    private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-        if(posicionSeleccionada >= 1 && posicionSeleccionada < 3)
-            posicionSeleccionada += 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/CargaElectrica"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnSiguienteMouseClicked
-
-    private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-        if(posicionSeleccionada > 1 && posicionSeleccionada <= 3)
-            posicionSeleccionada = posicionSeleccionada - 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/CargaElectrica"+posicionSeleccionada+".png"));
-        lblFondo.setIcon(icon);
-    }//GEN-LAST:event_lblBtnAtrasMouseClicked
-
     private void lbtnAbrirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbtnAbrirMenuMouseClicked
         if(!menuMoviendose){
             if(menuAbierto){
@@ -414,10 +388,9 @@ public class FrmLeerLey extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPantallaNegra;
-    private javax.swing.JLabel lblBtnAtras;
-    private javax.swing.JLabel lblBtnSiguiente;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIrLinea;
     private javax.swing.JLabel lblMenuFondo;

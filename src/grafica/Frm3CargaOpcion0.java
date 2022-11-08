@@ -259,7 +259,7 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtExponenteQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
+        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 190, 50));
 
         positivaQ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/Positiva.png"))); // NOI18N
         getContentPane().add(positivaQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, -1, -1));
@@ -427,8 +427,10 @@ public class Frm3CargaOpcion0 extends javax.swing.JFrame {
                             }
                         }
                         campoResultante = Math.abs(campoResultante);
-                        DecimalFormat f = new DecimalFormat("0.##E0");
-                        lblCampo.setText(f.format(campoResultante));
+                                DecimalFormat f = new DecimalFormat("0.##E0");
+                                String campoFormatoCientifico = f.format(campoResultante);
+                                String campoFormateado = campoFormatoCientifico.replace("E", "x10^");
+                                lblCampo.setText(campoFormateado);
                     }
                 }
             }

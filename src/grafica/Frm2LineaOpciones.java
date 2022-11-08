@@ -24,6 +24,8 @@ public class Frm2LineaOpciones extends javax.swing.JFrame {
         this.setIconImage( imagenIcono.getImage());
         this.setResizable(false);
         setLocationRelativeTo(null);
+        lblBtnSiguiente.setVisible(true);
+                lblBtnAtras.setVisible(false);
     }
 
     /**
@@ -105,19 +107,21 @@ public class Frm2LineaOpciones extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -560, 408, 560));
 
+        lblBtnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnSiguienteArreglado.png"))); // NOI18N
         lblBtnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnSiguienteMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 60, 90));
+        getContentPane().add(lblBtnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 240, 80, 90));
 
+        lblBtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/BtnAtrasArreglado.png"))); // NOI18N
         lblBtnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBtnAtrasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 60, 110));
+        getContentPane().add(lblBtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 70, 110));
 
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,7 +130,7 @@ public class Frm2LineaOpciones extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 800, 510));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2LineasOpcion0.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/2LineasOpcion1.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -148,27 +152,51 @@ public class Frm2LineaOpciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnSiguienteMouseClicked
-
-            posicionSeleccionada = 1;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2LineasOpcion1.png"));
-        lblFondo.setIcon(icon);
+        if(posicionSeleccionada < 2)
+            posicionSeleccionada++;
+        imagen();
     }//GEN-LAST:event_lblBtnSiguienteMouseClicked
 
+    void imagen(){
+        switch(posicionSeleccionada){
+            case 0:
+                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2LineasOpcion1.png"));
+                lblFondo.setIcon(icon);
+                lblBtnSiguiente.setVisible(true);
+                lblBtnAtras.setVisible(false);
+                break;
+            case 1:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2LineasOpcion0.png"));
+                lblFondo.setIcon(icon);
+                lblBtnSiguiente.setVisible(true);
+                lblBtnAtras.setVisible(true);
+                break;
+            case 2:
+                icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2LineasOpcion2.png"));
+                lblFondo.setIcon(icon);
+                lblBtnSiguiente.setVisible(false);
+                lblBtnAtras.setVisible(true);
+                break;
+        }
+    }
+    
     private void lblBtnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnAtrasMouseClicked
-
-            posicionSeleccionada = 0;
-        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/2LineasOpcion0.png"));
-        lblFondo.setIcon(icon);
+        if(posicionSeleccionada > 0)
+            posicionSeleccionada = posicionSeleccionada - 1;
+        imagen();
     }//GEN-LAST:event_lblBtnAtrasMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         setVisible(false);
         switch(posicionSeleccionada){
             case 0:
-                new Frm2LineaOpcion0().setVisible(true);
+                new Frm2LineaOpcion1().setVisible(true);
                 break;
             case 1:
-                new Frm2LineaOpcion1().setVisible(true);
+                new Frm2LineaOpcion0().setVisible(true);
+                break;
+            case 2:
+                new Frm2LineaOpcion2().setVisible(true);
                 break;
         }
     }//GEN-LAST:event_jLabel1MouseClicked

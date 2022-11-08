@@ -180,7 +180,7 @@ public class Frm1Carga extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtExponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
+        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 190, 50));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/1CargaFondo.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
@@ -225,8 +225,11 @@ public class Frm1Carga extends javax.swing.JFrame {
                         txtDistancia.setBackground(new Color(0,0,0,0));
                         double k = 9e9;
                         double campoResultante = (k * Math.abs(cargaCompleta)) / Math.pow(distancia, 2);
+                        campoResultante = Math.abs(campoResultante);
                         DecimalFormat f = new DecimalFormat("0.##E0");
-                        lblCampo.setText(String.valueOf(f.format(campoResultante)));
+                        String campoFormatoCientifico = f.format(campoResultante);
+                        String campoFormateado = campoFormatoCientifico.replace("E", "x10^");
+                        lblCampo.setText(campoFormateado);
                     }else{
                         txtDistancia.setBackground(new Color(100,0,0,100));
                         lblCampo.setText(null);

@@ -10,15 +10,12 @@ import java.awt.FontFormatException;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -45,6 +42,8 @@ public class Frm1Placa extends javax.swing.JFrame {
         txtCargaQ1.setSelectionColor(new Color(0,0,0,0));
         txtArea.setBackground(new Color(0,0,0,0));
         txtExponente.setBackground(new Color(0,0,0,0));
+        lblPositivo.setVisible(false);
+        lblNegativo.setVisible(false);
         try {
             URL urlFont = getClass().getResource("/fonts/pristina.ttf");
             String urlFontConverted = urlFont.toString().replaceAll("%20", " ");
@@ -98,6 +97,8 @@ public class Frm1Placa extends javax.swing.JFrame {
         txtArea = new javax.swing.JTextField();
         txtExponente = new javax.swing.JTextField();
         lblCampo = new javax.swing.JLabel();
+        lblNegativo = new javax.swing.JLabel();
+        lblPositivo = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanelPantallaNegra = new javax.swing.JPanel();
 
@@ -180,7 +181,13 @@ public class Frm1Placa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtExponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 12, 40, 40));
-        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 170, 50));
+        getContentPane().add(lblCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 190, 50));
+
+        lblNegativo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/PlacaNegativo.png"))); // NOI18N
+        getContentPane().add(lblNegativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        lblPositivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/PlacaPositivo.png"))); // NOI18N
+        getContentPane().add(lblPositivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/1PlacaArreglado.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
@@ -213,6 +220,7 @@ public class Frm1Placa extends javax.swing.JFrame {
     }
     
     void actualizarCampo(){
+        System.out.println("asdasd");
         if(esNumero(txtCargaQ1.getText())){
             double cargaQ1 = Double.parseDouble(txtCargaQ1.getText());
             if(esNumero(txtExponente.getText())){
@@ -226,8 +234,11 @@ public class Frm1Placa extends javax.swing.JFrame {
                         double k = 9e9;
                         double e0 = 8.8e-12;
                         double campoResultante = Math.abs(sigma / (2 * e0));
+                        campoResultante = Math.abs(campoResultante);
                         DecimalFormat f = new DecimalFormat("0.##E0");
-                        lblCampo.setText(String.valueOf(f.format(campoResultante)));
+                        String campoFormatoCientifico = f.format(campoResultante);
+                        String campoFormateado = campoFormatoCientifico.replace("E", "x10^");
+                        lblCampo.setText(campoFormateado);
                     }else{
                         txtArea.setBackground(new Color(100,0,0,100));
                         lblCampo.setText(null);
@@ -236,18 +247,18 @@ public class Frm1Placa extends javax.swing.JFrame {
             }
             
             if(cargaQ1 > 0){
-                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1PlacaPos.png"));
-                lblFondo.setIcon(icon);
+                lblPositivo.setVisible(true);
+                lblNegativo.setVisible(false);
                 return;
             }
             if(cargaQ1 < 0){
-                ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1PlacaNeg.png"));
-                lblFondo.setIcon(icon);
+                lblPositivo.setVisible(false);
+                lblNegativo.setVisible(true);
                 return;
             }
-            ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/1PlacaArreglado.png"));
+            lblPositivo.setVisible(false);
+            lblNegativo.setVisible(false);
             lblCampo.setText(null);
-            lblFondo.setIcon(icon);
         }
     }
     
@@ -305,9 +316,13 @@ public class Frm1Placa extends javax.swing.JFrame {
         }
         if(txtCargaQ1.getText().equals("")){
             lblCampo.setText(null);
+            lblPositivo.setVisible(false);
+            lblNegativo.setVisible(false);
             txtCargaQ1.setBackground(new Color(0,0,0,0));
             return;
         }
+        lblPositivo.setVisible(false);
+        lblNegativo.setVisible(false);
         txtCargaQ1.setBackground(new Color(100,0,0,100));
         lblCampo.setText(null);
     }//GEN-LAST:event_txtCargaQ1KeyReleased
@@ -446,6 +461,8 @@ public class Frm1Placa extends javax.swing.JFrame {
     private javax.swing.JLabel lblCampo;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMenuFondo;
+    private javax.swing.JLabel lblNegativo;
+    private javax.swing.JLabel lblPositivo;
     private logica.JLabelRotar lbtnAbrirMenu;
     private javax.swing.JLabel lbtnIrCargas;
     private javax.swing.JLabel lbtnIrCreditos;

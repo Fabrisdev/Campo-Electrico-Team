@@ -116,6 +116,12 @@ public class FrmEnciclopedia extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLeerCargaElectricaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLeerCargaElectricaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLeerCargaElectricaMouseExited(evt);
+            }
         });
         getContentPane().add(lblLeerCargaElectrica, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 420, 30));
 
@@ -123,24 +129,42 @@ public class FrmEnciclopedia extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLeerClasificacionMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLeerClasificacionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLeerClasificacionMouseExited(evt);
+            }
         });
-        getContentPane().add(lblLeerClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 310, 60));
+        getContentPane().add(lblLeerClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 410, 60));
 
         lblLeerLey.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLeerLeyMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLeerLeyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLeerLeyMouseExited(evt);
+            }
         });
-        getContentPane().add(lblLeerLey, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 240, 40));
+        getContentPane().add(lblLeerLey, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 420, 40));
 
         lblLeerEcuacionesCampoElectrico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLeerEcuacionesCampoElectricoMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLeerEcuacionesCampoElectricoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLeerEcuacionesCampoElectricoMouseExited(evt);
+            }
         });
         getContentPane().add(lblLeerEcuacionesCampoElectrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 400, 30));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/EnciclopediaIndice.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grafica/img/EnciclopediaSeleccionar.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         jPanelPantallaNegra.setOpaque(false);
@@ -260,7 +284,7 @@ public class FrmEnciclopedia extends javax.swing.JFrame {
 
     private void lblLeerCargaElectricaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerCargaElectricaMouseClicked
         setVisible(false);
-        new FrmLeerCargaElectrica().setVisible(true);
+        new FrmLeerLey().setVisible(true);
     }//GEN-LAST:event_lblLeerCargaElectricaMouseClicked
 
     private void lblLeerEcuacionesCampoElectricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerEcuacionesCampoElectricoMouseClicked
@@ -278,6 +302,46 @@ public class FrmEnciclopedia extends javax.swing.JFrame {
         setVisible(false);
         new FrmLeerClas().setVisible(true);
     }//GEN-LAST:event_lblLeerClasificacionMouseClicked
+
+    private void lblLeerLeyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerLeyMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaLeyHover.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerLeyMouseEntered
+
+    private void lblLeerLeyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerLeyMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaSeleccionar.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerLeyMouseExited
+
+    private void lblLeerClasificacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerClasificacionMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaClasHover.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerClasificacionMouseEntered
+
+    private void lblLeerClasificacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerClasificacionMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaSeleccionar.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerClasificacionMouseExited
+
+    private void lblLeerEcuacionesCampoElectricoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerEcuacionesCampoElectricoMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaEcuacionesHover.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerEcuacionesCampoElectricoMouseEntered
+
+    private void lblLeerEcuacionesCampoElectricoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerEcuacionesCampoElectricoMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaSeleccionar.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerEcuacionesCampoElectricoMouseExited
+
+    private void lblLeerCargaElectricaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerCargaElectricaMouseEntered
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaCargaHover.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerCargaElectricaMouseEntered
+
+    private void lblLeerCargaElectricaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeerCargaElectricaMouseExited
+        ImageIcon icon = new ImageIcon(FrmMenu.class.getResource("/grafica/img/EnciclopediaSeleccionar.png"));
+        lblFondo.setIcon(icon);
+    }//GEN-LAST:event_lblLeerCargaElectricaMouseExited
 
     /**
      * @param args the command line arguments
